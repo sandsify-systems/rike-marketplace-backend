@@ -1,6 +1,8 @@
 import swaggerJSDoc from 'swagger-jsdoc';
 import { Express } from 'express';
 
+const isLocal = process.env.NODE_ENV === 'development'; // Check if running in development mode
+
 const swaggerDefinition = {
   openapi: '3.0.0',
   info: {
@@ -10,8 +12,8 @@ const swaggerDefinition = {
   },
   servers: [
     {
-      url: 'https://rike-marketplace-backend.onrender.com', // Replace with your server URL
-      description: 'Development server',
+      url: isLocal ? 'http://localhost:8000' : 'https://rike-marketplace-backend.onrender.com',
+      description: isLocal ? 'Local server' : 'Remote server',
     },
   ],
 };

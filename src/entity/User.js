@@ -72,8 +72,8 @@ var User = /** @class */ (function () {
         __metadata("design:type", Boolean)
     ], User.prototype, "twoFactorEnabled", void 0);
     __decorate([
-        (0, typeorm_1.Column)({ default: 1 }),
-        __metadata("design:type", Number)
+        (0, typeorm_1.Column)({ default: true }),
+        __metadata("design:type", Boolean)
     ], User.prototype, "accountStatus", void 0);
     __decorate([
         (0, typeorm_1.Column)({

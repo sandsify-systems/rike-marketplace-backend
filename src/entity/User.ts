@@ -45,8 +45,8 @@ export class User {
   @Column({ default: false })
   twoFactorEnabled: boolean;
 
-  @Column({ default: 1 })
-  accountStatus: number;
+  @Column({ default: true })
+  accountStatus: boolean;
 
   @Column({
     type: 'enum',

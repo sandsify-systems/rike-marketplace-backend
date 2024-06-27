@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.swaggerSetup = exports.swaggerSpec = void 0;
 var swagger_jsdoc_1 = __importDefault(require("swagger-jsdoc"));
+var isLocal = process.env.NODE_ENV === 'development'; // Check if running in development mode
 var swaggerDefinition = {
     openapi: '3.0.0',
     info: {
@@ -14,8 +15,8 @@ var swaggerDefinition = {
     },
     servers: [
         {
-            url: 'https://rike-marketplace-backend.onrender.com', // Replace with your server URL
-            description: 'Development server',
+            url: isLocal ? 'http://localhost:8000' : 'https://rike-marketplace-backend.onrender.com',
+            description: isLocal ? 'Local server' : 'Remote server',
         },
     ],
 };
