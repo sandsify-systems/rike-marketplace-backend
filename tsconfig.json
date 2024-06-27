@@ -7,9 +7,12 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
-    "outDir": "./dist", // Output directory for compiled JavaScript files
-    "rootDir": "./src" // Root directory for TypeScript files
+    "baseUrl": "./src", // Base URL for module resolution
+    "paths": {
+      "@/*": ["./*"] // Alias configuration
+    }
   },
   "include": ["src/**/*.ts"], // Include all TypeScript files in the src directory
   "exclude": ["node_modules"] // Exclude the node_modules directory
 }
+

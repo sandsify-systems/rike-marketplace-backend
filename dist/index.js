@@ -12,7 +12,7 @@ var userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 var customerRoutes_1 = __importDefault(require("./routes/customerRoutes"));
 var orderRoutes_1 = __importDefault(require("./routes/orderRoutes"));
 var transactionRoutes_1 = __importDefault(require("./routes/transactionRoutes"));
-var swagger_1 = require("../swagger"); // Import swaggerSetup and swaggerSpec
+var swagger_1 = require("./swagger");
 var swagger_ui_express_1 = __importDefault(require("swagger-ui-express")); // Import swaggerUI
 data_source_1.AppDataSource.initialize()
     .then(function () {
