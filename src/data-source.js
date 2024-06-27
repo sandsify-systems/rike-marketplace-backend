@@ -23,7 +23,7 @@ exports.AppDataSource = new typeorm_1.DataSource({
     password: process.env.DB_PASSWORD || '',
     database: process.env.DB_DATABASE || 'marketplace',
     synchronize: true,
-    logging: true,
+    logging: false,
     entities: [Product_1.Product, ProductCategory_1.ProductCategory, User_1.User, Customer_1.Customer, Order_1.Order, OrderItem_1.OrderItem, Transaction_1.Transaction], // Add OrderItem to entities
     migrations: [],
     subscribers: [],
