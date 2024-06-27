@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var TransactionController_1 = require("../controllers/TransactionController");
+var router = (0, express_1.Router)();
+var transactionController = new TransactionController_1.TransactionController();
+router.get('/', function (req, res) { return transactionController.getAll(req, res); });
+router.get('/:id', function (req, res) { return transactionController.getById(req, res); });
+router.post('/', function (req, res) { return transactionController.create(req, res); });
+router.put('/:id', function (req, res) { return transactionController.update(req, res); });
+router.delete('/:id', function (req, res) { return transactionController.delete(req, res); });
+exports.default = router;

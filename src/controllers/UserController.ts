@@ -1,0 +1,153 @@
+import { Request, Response } from 'express';
+import { UserService } from '../service/UserService';
+
+const userService = new UserService();
+
+export class UserController {
+  /**
+   * @swagger
+   * tags:
+   *   name: Users
+   *   description: API endpoints for managing users.
+   */
+
+  /**
+   * @swagger
+   * /users:
+   *   get:
+   *     summary: Retrieve all users
+   *     tags: [Users]
+   *     responses:
+   *       '200':
+   *         description: A list of users
+   */
+  async getAll(req: Request, res: Response) {
+    const users = await userService.getAll();
+    res.json(users);
+  }
+
+  /**
+   * @swagger
+   * /users/{id}:
+   *   get:
+   *     summary: Retrieve a single user by ID
+   *     tags: [Users]
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         schema:
+   *           type: integer
+   *         description: ID of the user to retrieve
+   *     responses:
+   *       '200':
+   *         description: A user object
+   *       '404':
+   *         description: User not found
+   */
+  async getById(req: Request, res: Response) {
+    const user = await userService.getById(Number(req.params.id));
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json(user);
+  }
+
+  /**
+   * @swagger
+   * /users:
+   *   post:
+   *     summary: Create a new user
+   *     tags: [Users]
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             properties:
+   *               username:
+   *                 type: string
+   *                 description: Username of the user
+   *               email:
+   *                 type: string
+   *                 description: Email address of the user
+   *             example:
+   *               username: john_doe
+   *               email: john.doe@example.com
+   *     responses:
+   *       '200':
+   *         description: Created user object
+   */
+  async create(req: Request, res: Response) {
+    const user = await userService.create(req.body);
+    res.json(user);
+  }
+
+  /**
+   * @swagger
+   * /users/{id}:
+   *   put:
+   *     summary: Update a user by ID
+   *     tags: [Users]
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         schema:
+   *           type: integer
+   *         description: ID of the user to update
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             properties:
+   *               username:
+   *                 type: string
+   *                 description: Updated username of the user
+   *               email:
+   *                 type: string
+   *                 description: Updated email address of the user
+   *             example:
+   *               username: john_doe_updated
+   *               email: john.doe.updated@example.com
+   *     responses:
+   *       '200':
+   *         description: Updated user object
+   *       '404':
+   *         description: User not found
+   */
+  async update(req: Request, res: Response) {
+    const user = await userService.update(Number(req.params.id), req.body);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json(user);
+  }
+
+  /**
+   * @swagger
+   * /users/{id}:
+   *   delete:
+   *     summary: Delete a user by ID
+   *     tags: [Users]
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         schema:
+   *           type: integer
+   *         description: ID of the user to delete
+   *     responses:
+   *       '204':
+   *         description: User deleted successfully
+   *       '404':
+   *         description: User not found
+   */
+  async delete(req: Request, res: Response) {
+    await userService.delete(Number(req.params.id));
+    res.sendStatus(204);
+  }
+}

@@ -1,0 +1,987 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Your API Title",
+    "version": "1.0.0",
+    "description": "Your API description"
+  },
+  "paths": {
+    "/customers": {
+      "get": {
+        "summary": "Retrieve all customers",
+        "tags": [
+          "Customers"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of customers"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new customer",
+        "tags": [
+          "Customers"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the customer"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Email address of the customer"
+                  }
+                },
+                "example": {
+                  "name": "John Doe",
+                  "email": "john.doe@example.com"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created customer object"
+          }
+        }
+      }
+    },
+    "/customers/{id}": {
+      "get": {
+        "summary": "Retrieve a single customer by ID",
+        "tags": [
+          "Customers"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the customer to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A customer object"
+          },
+          "404": {
+            "description": "Customer not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a customer by ID",
+        "tags": [
+          "Customers"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the customer to update"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Updated name of the customer"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Updated email address of the customer"
+                  }
+                },
+                "example": {
+                  "name": "John Doe (Updated)",
+                  "email": "john.doe@example.com"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated customer object"
+          },
+          "404": {
+            "description": "Customer not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a customer by ID",
+        "tags": [
+          "Customers"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the customer to delete"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Customer deleted successfully"
+          },
+          "404": {
+            "description": "Customer not found"
+          }
+        }
+      }
+    },
+    "/orders": {
+      "get": {
+        "summary": "Retrieve all orders",
+        "tags": [
+          "Orders"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of orders"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new order",
+        "tags": [
+          "Orders"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "customerId": {
+                    "type": "integer",
+                    "description": "ID of the customer placing the order"
+                  },
+                  "amount": {
+                    "type": "number",
+                    "description": "Total amount of the order"
+                  }
+                },
+                "example": {
+                  "customerId": 1,
+                  "amount": 100.5
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created order object"
+          }
+        }
+      }
+    },
+    "/orders/{id}": {
+      "get": {
+        "summary": "Retrieve a single order by ID",
+        "tags": [
+          "Orders"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the order to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An order object"
+          },
+          "404": {
+            "description": "Order not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an order by ID",
+        "tags": [
+          "Orders"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the order to update"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "customerId": {
+                    "type": "integer",
+                    "description": "Updated ID of the customer placing the order"
+                  },
+                  "amount": {
+                    "type": "number",
+                    "description": "Updated total amount of the order"
+                  }
+                },
+                "example": {
+                  "customerId": "1 (Updated)",
+                  "amount": 120.75
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated order object"
+          },
+          "404": {
+            "description": "Order not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an order by ID",
+        "tags": [
+          "Orders"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the order to delete"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Order deleted successfully"
+          },
+          "404": {
+            "description": "Order not found"
+          }
+        }
+      }
+    },
+    "/product-categories": {
+      "get": {
+        "summary": "Retrieve all product categories",
+        "tags": [
+          "Product Categories"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of product categories"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new product category",
+        "tags": [
+          "Product Categories"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the product category"
+                  }
+                },
+                "example": {
+                  "name": "Electronics"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created product category object"
+          }
+        }
+      }
+    },
+    "/product-categories/{id}": {
+      "get": {
+        "summary": "Retrieve a single product category by ID",
+        "tags": [
+          "Product Categories"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the product category to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A product category object"
+          },
+          "404": {
+            "description": "Product category not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a product category by ID",
+        "tags": [
+          "Product Categories"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the product category to update"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Updated name of the product category"
+                  }
+                },
+                "example": {
+                  "name": "Electronics (Updated)"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated product category object"
+          },
+          "404": {
+            "description": "Product category not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a product category by ID",
+        "tags": [
+          "Product Categories"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the product category to delete"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Product category deleted successfully"
+          },
+          "404": {
+            "description": "Product category not found"
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "summary": "Retrieve all products",
+        "tags": [
+          "Products"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of products"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new product",
+        "tags": [
+          "Products"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "Title of the product"
+                  },
+                  "image": {
+                    "type": "string",
+                    "description": "URL of the product image"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description of the product"
+                  },
+                  "price": {
+                    "type": "number",
+                    "description": "Price of the product"
+                  },
+                  "likes": {
+                    "type": "number",
+                    "description": "Number of likes for the product default = 0"
+                  },
+                  "categoryId": {
+                    "type": "integer",
+                    "description": "ID of the product category"
+                  }
+                },
+                "example": {
+                  "title": "MacBook Pro",
+                  "image": "https://example.com/macbook.jpg",
+                  "description": "A high-end laptop from Apple",
+                  "price": 1999.99,
+                  "likes": 0,
+                  "categoryId": 1
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created product object"
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "summary": "Retrieve a single product by ID",
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the product to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A product object"
+          },
+          "404": {
+            "description": "Product not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a product by ID",
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the product to update"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "Updated title of the product"
+                  },
+                  "image": {
+                    "type": "string",
+                    "description": "Updated URL of the product image"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Updated description of the product"
+                  },
+                  "price": {
+                    "type": "number",
+                    "description": "Updated price of the product"
+                  },
+                  "likes": {
+                    "type": "number",
+                    "description": "Updated number of likes for the product"
+                  },
+                  "categoryId": {
+                    "type": "integer",
+                    "description": "Updated ID of the product category"
+                  }
+                },
+                "example": {
+                  "title": "MacBook Pro (Updated)",
+                  "image": "https://example.com/macbook_updated.jpg",
+                  "description": "A high-end laptop from Apple (Updated)",
+                  "price": 2199.99,
+                  "likes": 10,
+                  "categoryId": 1
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated product object"
+          },
+          "404": {
+            "description": "Product not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a product by ID",
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the product to delete"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No content, product deleted"
+          },
+          "404": {
+            "description": "Product not found"
+          }
+        }
+      }
+    },
+    "/products/category/{categoryId}": {
+      "get": {
+        "summary": "Retrieve products by category ID",
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "categoryId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the product category"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of products in the category"
+          }
+        }
+      }
+    },
+    "/transactions": {
+      "get": {
+        "summary": "Retrieve all transactions",
+        "tags": [
+          "Transactions"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of transactions"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new transaction",
+        "tags": [
+          "Transactions"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "orderId": {
+                    "type": "integer",
+                    "description": "ID of the order for the transaction"
+                  },
+                  "amount": {
+                    "type": "number",
+                    "description": "Amount of the transaction"
+                  }
+                },
+                "example": {
+                  "orderId": 1,
+                  "amount": 100.5
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created transaction object"
+          }
+        }
+      }
+    },
+    "/transactions/{id}": {
+      "get": {
+        "summary": "Retrieve a single transaction by ID",
+        "tags": [
+          "Transactions"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the transaction to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A transaction object"
+          },
+          "404": {
+            "description": "Transaction not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a transaction by ID",
+        "tags": [
+          "Transactions"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the transaction to update"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "orderId": {
+                    "type": "integer",
+                    "description": "Updated ID of the order for the transaction"
+                  },
+                  "amount": {
+                    "type": "number",
+                    "description": "Updated amount of the transaction"
+                  }
+                },
+                "example": {
+                  "orderId": "1 (Updated)",
+                  "amount": 120.75
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated transaction object"
+          },
+          "404": {
+            "description": "Transaction not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a transaction by ID",
+        "tags": [
+          "Transactions"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the transaction to delete"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Transaction deleted successfully"
+          },
+          "404": {
+            "description": "Transaction not found"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "Retrieve all users",
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of users"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new user",
+        "tags": [
+          "Users"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "description": "Username of the user"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "Email address of the user"
+                  }
+                },
+                "example": {
+                  "username": "john_doe",
+                  "email": "john.doe@example.com"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created user object"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "summary": "Retrieve a single user by ID",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the user to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A user object"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a user by ID",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the user to update"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "description": "Updated username of the user"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "Updated email address of the user"
+                  }
+                },
+                "example": {
+                  "username": "john_doe_updated",
+                  "email": "john.doe.updated@example.com"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated user object"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a user by ID",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the user to delete"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "User deleted successfully"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {},
+  "tags": [
+    {
+      "name": "Customers",
+      "description": "API endpoints for managing customers."
+    },
+    {
+      "name": "Orders",
+      "description": "API endpoints for managing orders."
+    },
+    {
+      "name": "Product Categories",
+      "description": "API endpoints for managing product categories."
+    },
+    {
+      "name": "Products",
+      "description": "API endpoints for managing products."
+    },
+    {
+      "name": "Transactions",
+      "description": "API endpoints for managing transactions."
+    },
+    {
+      "name": "Users",
+      "description": "API endpoints for managing users."
+    }
+  ]
+}
