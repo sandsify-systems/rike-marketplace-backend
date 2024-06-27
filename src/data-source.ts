@@ -19,7 +19,7 @@ export const AppDataSource = new DataSource({
   password: process.env.DB_PASSWORD || '',
   database: process.env.DB_DATABASE || 'marketplace',
   synchronize: true,
-  logging: false,
+  logging: true,
   entities: [Product, ProductCategory, User, Customer, Order, OrderItem, Transaction], // Add OrderItem to entities
   migrations: [],
   subscribers: [],

@@ -21,11 +21,59 @@ var User = /** @class */ (function () {
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", String)
-    ], User.prototype, "username", void 0);
+    ], User.prototype, "name", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", String)
+    ], User.prototype, "email", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", String)
     ], User.prototype, "password", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", String)
+    ], User.prototype, "salt", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", String)
+    ], User.prototype, "image", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ type: 'timestamp', default: function () { return 'CURRENT_TIMESTAMP'; } }),
+        __metadata("design:type", Date)
+    ], User.prototype, "createdAt", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ type: 'timestamp', default: function () { return 'CURRENT_TIMESTAMP'; }, onUpdate: 'CURRENT_TIMESTAMP' }),
+        __metadata("design:type", Date)
+    ], User.prototype, "updatedAt", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ nullable: true }),
+        __metadata("design:type", String)
+    ], User.prototype, "resetPasswordToken", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ nullable: true }),
+        __metadata("design:type", Date)
+    ], User.prototype, "resetPasswordExpires", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ nullable: true }),
+        __metadata("design:type", String)
+    ], User.prototype, "twoFactorToken", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ nullable: true }),
+        __metadata("design:type", Date)
+    ], User.prototype, "twoFactorExpires", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ default: false }),
+        __metadata("design:type", Boolean)
+    ], User.prototype, "twoFactorEnabled", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ default: 1 }),
+        __metadata("design:type", Number)
+    ], User.prototype, "accountStatus", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({ enum: ['admin', 'institution', 'researcher', 'explorer'] }),
+        __metadata("design:type", String)
+    ], User.prototype, "role", void 0);
     User = __decorate([
         (0, typeorm_1.Entity)()
     ], User);
