@@ -82,6 +82,7 @@ export class UserController {
    *                 description: Role of the user
    *                 default: explorer
    *             example:
+   *               name: john doe
    *               email: john.doe@example.com
    *               password: mypassword
    *               accountStatus: true
@@ -115,6 +116,9 @@ export class UserController {
    *           schema:
    *             type: object
    *             properties:
+   *               name:
+   *                 type: string
+   *                 description: Updated name of the user
    *               email:
    *                 type: string
    *                 description: Updated email address of the user
