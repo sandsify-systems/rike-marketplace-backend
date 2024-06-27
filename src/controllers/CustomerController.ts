@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { CustomerService } from '../service/CustomerService';
+import { CustomerService } from '../services/CustomerService';
 
 const customerService = new CustomerService();
 

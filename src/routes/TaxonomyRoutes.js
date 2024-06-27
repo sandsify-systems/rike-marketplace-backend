@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var TaxonomyController_1 = require("../controllers/TaxonomyController");
+var router = (0, express_1.Router)();
+router.get('/', TaxonomyController_1.getTaxonomies);
+router.get('/:id', TaxonomyController_1.getTaxonomyById);
+router.post('/', TaxonomyController_1.createTaxonomy);
+router.put('/:id', TaxonomyController_1.updateTaxonomy);
+router.delete('/:id', TaxonomyController_1.deleteTaxonomy);
+exports.default = router;

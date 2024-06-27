@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { UserService } from '../service/UserService';
+import { UserService } from '../services/UserService';
 
 const userService = new UserService();
 
@@ -78,7 +78,7 @@ export class UserController {
    *                 default: true
    *               role:
    *                 type: string
-   *                 enum: [admin, institution, researcher, explorer]
+   *                 enum: [admin, institution, researcher, agent, explorer]
    *                 description: Role of the user
    *                 default: explorer
    *             example:

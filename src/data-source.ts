@@ -6,6 +6,9 @@ import { Customer } from './entity/Customer';
 import { Order } from './entity/Order';
 import { OrderItem } from './entity/OrderItem'; // Import OrderItem
 import { Transaction } from './entity/Transaction';
+import { ResearchInstitution } from './entity/ResearchInstitution';
+import { Equipment } from './entity/Equipment';
+import { Taxonomy } from './entity/Taxonomy';
 import dotenv from 'dotenv';
 
 // Load environment variables from .env file
@@ -20,7 +23,18 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_DATABASE || 'marketplace',
   synchronize: true,
   logging: false,
-  entities: [Product, ProductCategory, User, Customer, Order, OrderItem, Transaction], // Add OrderItem to entities
+  entities: [
+    Product, 
+    ProductCategory, 
+    User, 
+    Customer, 
+    Order, 
+    OrderItem, 
+    Transaction, 
+    ResearchInstitution, 
+    Equipment, 
+    Taxonomy
+  ], // Add OrderItem to entities
   migrations: [],
   subscribers: [],
 });

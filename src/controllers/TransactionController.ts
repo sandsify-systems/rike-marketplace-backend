@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { TransactionService } from '../service/TransactionService';
+import { TransactionService } from '../services/TransactionService';
 
 const transactionService = new TransactionService();
 

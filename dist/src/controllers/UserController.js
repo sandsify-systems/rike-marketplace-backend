@@ -121,15 +121,27 @@ var UserController = /** @class */ (function () {
      *           schema:
      *             type: object
      *             properties:
-     *               username:
-     *                 type: string
-     *                 description: Username of the user
      *               email:
      *                 type: string
      *                 description: Email address of the user
+     *               password:
+     *                 type: string
+     *                 description: Password of the user
+     *               accountStatus:
+     *                 type: boolean
+     *                 description: Status of the user's account
+     *                 default: true
+     *               role:
+     *                 type: string
+     *                 enum: [admin, institution, researcher, agent, explorer]
+     *                 description: Role of the user
+     *                 default: explorer
      *             example:
-     *               username: john_doe
+     *               name: john doe
      *               email: john.doe@example.com
+     *               password: mypassword
+     *               accountStatus: true
+     *               role: explorer
      *     responses:
      *       '200':
      *         description: Created user object
@@ -168,15 +180,22 @@ var UserController = /** @class */ (function () {
      *           schema:
      *             type: object
      *             properties:
-     *               username:
+     *               name:
      *                 type: string
-     *                 description: Updated username of the user
+     *                 description: Updated name of the user
      *               email:
      *                 type: string
      *                 description: Updated email address of the user
-     *             example:
-     *               username: john_doe_updated
-     *               email: john.doe.updated@example.com
+     *               password:
+     *                 type: string
+     *                 description: Updated password of the user
+     *               accountStatus:
+     *                 type: boolean
+     *                 description: Updated status of the user's account
+     *               role:
+     *                 type: string
+     *                 enum: [admin, institution, researcher, explorer]
+     *                 description: Updated role of the user
      *     responses:
      *       '200':
      *         description: Updated user object

@@ -11,6 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 var typeorm_1 = require("typeorm");
+var ResearchInstitution_1 = require("./ResearchInstitution");
+var Equipment_1 = require("./Equipment");
 var User = /** @class */ (function () {
     function User() {
     }
@@ -78,11 +80,19 @@ var User = /** @class */ (function () {
     __decorate([
         (0, typeorm_1.Column)({
             type: 'enum',
-            enum: ['admin', 'institution', 'researcher', 'explorer'],
+            enum: ['admin', 'institution', 'researcher', 'agent', 'explorer'],
             default: 'explorer', // Example default role
         }),
         __metadata("design:type", String)
     ], User.prototype, "role", void 0);
+    __decorate([
+        (0, typeorm_1.OneToMany)(function () { return ResearchInstitution_1.ResearchInstitution; }, function (researchInstitution) { return researchInstitution.createdBy; }),
+        __metadata("design:type", Array)
+    ], User.prototype, "createdResearchInstitutions", void 0);
+    __decorate([
+        (0, typeorm_1.OneToMany)(function () { return Equipment_1.Equipment; }, function (equipment) { return equipment.verifiedBy; }),
+        __metadata("design:type", Array)
+    ], User.prototype, "verifiedEquipments", void 0);
     User = __decorate([
         (0, typeorm_1.Entity)()
     ], User);

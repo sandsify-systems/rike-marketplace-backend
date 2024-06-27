@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { ResearchInstitution } from './ResearchInstitution';
+import { Equipment } from './Equipment';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -50,9 +51,15 @@ export class User {
 
   @Column({
     type: 'enum',
-    enum: ['admin', 'institution', 'researcher', 'explorer'],
+    enum: ['admin', 'institution', 'researcher', 'agent', 'explorer'],
     default: 'explorer', // Example default role
   })
   role: string;
+
+  @OneToMany(() => ResearchInstitution, researchInstitution => researchInstitution.createdBy)
+  createdResearchInstitutions: ResearchInstitution[];
+
+  @OneToMany(() => Equipment, equipment => equipment.verifiedBy)
+  verifiedEquipments: Equipment[];
 }
 

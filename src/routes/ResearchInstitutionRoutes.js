@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var ResearchInstitutionController_1 = require("../controllers/ResearchInstitutionController");
+var router = (0, express_1.Router)();
+router.get('/', ResearchInstitutionController_1.getResearchInstitutions);
+router.get('/:id', ResearchInstitutionController_1.getResearchInstitutionById);
+router.post('/', ResearchInstitutionController_1.createResearchInstitution);
+router.put('/:id', ResearchInstitutionController_1.updateResearchInstitution);
+router.delete('/:id', ResearchInstitutionController_1.deleteResearchInstitution);
+exports.default = router;

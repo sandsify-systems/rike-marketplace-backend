@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustomerController = void 0;
-var CustomerService_1 = require("../service/CustomerService");
+var CustomerService_1 = require("../services/CustomerService");
 var customerService = new CustomerService_1.CustomerService();
 var CustomerController = /** @class */ (function () {
     function CustomerController() {

@@ -39,11 +39,16 @@ var User = /** @class */ (function () {
         __metadata("design:type", String)
     ], User.prototype, "image", void 0);
     __decorate([
-        (0, typeorm_1.Column)({ type: 'timestamp', default: function () { return 'CURRENT_TIMESTAMP'; } }),
+        (0, typeorm_1.Column)({ nullable: true, type: 'timestamp' }) // Example nullable column with timestamp type
+        ,
         __metadata("design:type", Date)
     ], User.prototype, "createdAt", void 0);
     __decorate([
-        (0, typeorm_1.Column)({ type: 'timestamp', default: function () { return 'CURRENT_TIMESTAMP'; }, onUpdate: 'CURRENT_TIMESTAMP' }),
+        (0, typeorm_1.Column)({
+            type: 'timestamp',
+            default: function () { return 'CURRENT_TIMESTAMP'; }, // Default value set to current timestamp
+            onUpdate: 'CURRENT_TIMESTAMP', // On update also set to current timestamp
+        }),
         __metadata("design:type", Date)
     ], User.prototype, "updatedAt", void 0);
     __decorate([
@@ -67,11 +72,15 @@ var User = /** @class */ (function () {
         __metadata("design:type", Boolean)
     ], User.prototype, "twoFactorEnabled", void 0);
     __decorate([
-        (0, typeorm_1.Column)({ default: 1 }),
-        __metadata("design:type", Number)
+        (0, typeorm_1.Column)({ default: true }),
+        __metadata("design:type", Boolean)
     ], User.prototype, "accountStatus", void 0);
     __decorate([
-        (0, typeorm_1.Column)({ enum: ['admin', 'institution', 'researcher', 'explorer'] }),
+        (0, typeorm_1.Column)({
+            type: 'enum',
+            enum: ['admin', 'institution', 'researcher', 'agent', 'explorer'],
+            default: 'explorer', // Example default role
+        }),
         __metadata("design:type", String)
     ], User.prototype, "role", void 0);
     User = __decorate([

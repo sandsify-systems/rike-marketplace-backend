@@ -12,6 +12,9 @@ var Customer_1 = require("./entity/Customer");
 var Order_1 = require("./entity/Order");
 var OrderItem_1 = require("./entity/OrderItem"); // Import OrderItem
 var Transaction_1 = require("./entity/Transaction");
+var ResearchInstitution_1 = require("./entity/ResearchInstitution");
+var Equipment_1 = require("./entity/Equipment");
+var Taxonomy_1 = require("./entity/Taxonomy");
 var dotenv_1 = __importDefault(require("dotenv"));
 // Load environment variables from .env file
 dotenv_1.default.config();
@@ -24,7 +27,18 @@ exports.AppDataSource = new typeorm_1.DataSource({
     database: process.env.DB_DATABASE || 'marketplace',
     synchronize: true,
     logging: false,
-    entities: [Product_1.Product, ProductCategory_1.ProductCategory, User_1.User, Customer_1.Customer, Order_1.Order, OrderItem_1.OrderItem, Transaction_1.Transaction], // Add OrderItem to entities
+    entities: [
+        Product_1.Product,
+        ProductCategory_1.ProductCategory,
+        User_1.User,
+        Customer_1.Customer,
+        Order_1.Order,
+        OrderItem_1.OrderItem,
+        Transaction_1.Transaction,
+        ResearchInstitution_1.ResearchInstitution,
+        Equipment_1.Equipment,
+        Taxonomy_1.Taxonomy
+    ], // Add OrderItem to entities
     migrations: [],
     subscribers: [],
 });
