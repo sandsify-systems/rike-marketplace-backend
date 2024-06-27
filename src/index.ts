@@ -7,7 +7,7 @@ import userRoutes from './routes/userRoutes';
 import customerRoutes from './routes/customerRoutes';
 import orderRoutes from './routes/orderRoutes';
 import transactionRoutes from './routes/transactionRoutes';
-import { swaggerSetup, swaggerSpec } from './swagger';
+import { swaggerSetup, swaggerSpec } from '../swagger';
 import swaggerUI from 'swagger-ui-express'; // Import swaggerUI
 
 AppDataSource.initialize()
