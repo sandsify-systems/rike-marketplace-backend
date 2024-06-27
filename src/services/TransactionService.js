@@ -1,5 +1,4 @@
 "use strict";
-// src/services/EquipmentTaxonomyService.ts
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -37,55 +36,61 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EquipmentTaxonomyService = void 0;
+exports.TransactionService = void 0;
 var data_source_1 = require("../data-source");
-var EquipmentTaxonomy_1 = require("../entity/EquipmentTaxonomy");
-var EquipmentTaxonomyService = /** @class */ (function () {
-    function EquipmentTaxonomyService() {
-        this.equipmentTaxonomyRepository = data_source_1.AppDataSource.getRepository(EquipmentTaxonomy_1.EquipmentTaxonomy);
+var Transaction_1 = require("../entity/Transaction");
+var TransactionService = /** @class */ (function () {
+    function TransactionService() {
+        this.transactionRepository = data_source_1.AppDataSource.getRepository(Transaction_1.Transaction);
     }
-    EquipmentTaxonomyService.prototype.getAll = function () {
+    TransactionService.prototype.getAll = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.equipmentTaxonomyRepository.find()];
+                return [2 /*return*/, this.transactionRepository.find({ relations: ['order'] })];
             });
         });
     };
-    EquipmentTaxonomyService.prototype.getById = function (id) {
+    TransactionService.prototype.getById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.equipmentTaxonomyRepository.findOne(id)];
+                return [2 /*return*/, this.transactionRepository.findOne({
+                        where: { id: id },
+                        relations: ['order']
+                    })];
             });
         });
     };
-    EquipmentTaxonomyService.prototype.create = function (data) {
+    TransactionService.prototype.create = function (transactionData) {
         return __awaiter(this, void 0, void 0, function () {
-            var equipmentTaxonomy;
+            var transaction;
             return __generator(this, function (_a) {
-                equipmentTaxonomy = this.equipmentTaxonomyRepository.create(data);
-                return [2 /*return*/, this.equipmentTaxonomyRepository.save(equipmentTaxonomy)];
+                transaction = this.transactionRepository.create(transactionData);
+                return [2 /*return*/, this.transactionRepository.save(transaction)];
             });
         });
     };
-    EquipmentTaxonomyService.prototype.update = function (id, data) {
+    TransactionService.prototype.update = function (id, transactionData) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.equipmentTaxonomyRepository.update(id, data)];
+                    case 0: return [4 /*yield*/, this.transactionRepository.update(id, transactionData)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, this.equipmentTaxonomyRepository.findOne(id)];
+                        return [2 /*return*/, this.transactionRepository.findOne({
+                                where: { id: id },
+                                relations: ['order']
+                            })];
                 }
             });
         });
     };
-    EquipmentTaxonomyService.prototype.delete = function (id) {
+    TransactionService.prototype.delete = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.equipmentTaxonomyRepository.delete(id)];
+                return [2 /*return*/, this.transactionRepository.delete(id)];
             });
         });
     };
-    return EquipmentTaxonomyService;
+    return TransactionService;
 }());
-exports.EquipmentTaxonomyService = EquipmentTaxonomyService;
+exports.TransactionService = TransactionService;

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { TaxonomyService } from '../services/TaxonomyService';
+import { EquipmentTaxonomyService   } from '../services/EquipmentTaxonomyService';
 
-const taxonomyService = new TaxonomyService();
+const equipmentTaxonomyService   = new EquipmentTaxonomyService  ();
 
 export class TaxonomyController {
 
@@ -23,7 +23,7 @@ export class TaxonomyController {
      *         description: A list of taxonomy entries.
      */
     async getAll(req: Request, res: Response) {
-        const taxonomy = await taxonomyService.getAll();
+        const taxonomy = await equipmentTaxonomyService .getAll();
         res.json(taxonomy);
     }
 
@@ -47,7 +47,7 @@ export class TaxonomyController {
      *         description: Taxonomy entry not found.
      */
     async getById(req: Request, res: Response) {
-        const taxonomy = await taxonomyService.getById(Number(req.params.id));
+        const taxonomy = await equipmentTaxonomyService .getById(Number(req.params.id));
         if (!taxonomy) {
             return res.status(404).json({ message: 'Taxonomy entry not found' });
         }
@@ -85,7 +85,7 @@ export class TaxonomyController {
      */
     async create(req: Request, res: Response) {
         try {
-            const taxonomy = await taxonomyService.create(req.body);
+            const taxonomy = await equipmentTaxonomyService .create(req.body);
             res.json(taxonomy);
         } catch (err) {
             res.status(400).json({ error: err.message });
@@ -132,7 +132,7 @@ export class TaxonomyController {
      */
     async update(req: Request, res: Response) {
         try {
-            const taxonomy = await taxonomyService.update(Number(req.params.id), req.body);
+            const taxonomy = await equipmentTaxonomyService .update(Number(req.params.id), req.body);
             if (!taxonomy) {
                 res.status(404).json({ error: 'Taxonomy entry not found' });
                 return;
@@ -164,7 +164,7 @@ export class TaxonomyController {
      */
     async delete(req: Request, res: Response) {
         try {
-            await taxonomyService.delete(Number(req.params.id));
+            await equipmentTaxonomyService .delete(Number(req.params.id));
             res.sendStatus(204);
         } catch (err) {
             res.status(404).json({ error: 'Taxonomy entry not found' });
@@ -193,7 +193,7 @@ export class TaxonomyController {
     async getByEquipment(req: Request, res: Response) {
         try {
             const { equipmentId } = req.params;
-            const taxonomy = await taxonomyService.getByEquipmentId(Number(equipmentId));
+            const taxonomy = await equipmentTaxonomyService .getByEquipmentId(Number(equipmentId));
             if (!taxonomy) {
                 res.status(404).json({ error: 'No taxonomy entries found for the specified equipment ID' });
                 return;

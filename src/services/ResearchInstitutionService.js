@@ -1,5 +1,4 @@
 "use strict";
-// src/services/EquipmentTaxonomyService.ts
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -37,55 +36,55 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EquipmentTaxonomyService = void 0;
+exports.ResearchInstitutionService = void 0;
 var data_source_1 = require("../data-source");
-var EquipmentTaxonomy_1 = require("../entity/EquipmentTaxonomy");
-var EquipmentTaxonomyService = /** @class */ (function () {
-    function EquipmentTaxonomyService() {
-        this.equipmentTaxonomyRepository = data_source_1.AppDataSource.getRepository(EquipmentTaxonomy_1.EquipmentTaxonomy);
+var ResearchInstitution_1 = require("../entity/ResearchInstitution");
+var ResearchInstitutionService = /** @class */ (function () {
+    function ResearchInstitutionService() {
+        this.researchInstitutionRepository = data_source_1.AppDataSource.getRepository(ResearchInstitution_1.ResearchInstitution);
     }
-    EquipmentTaxonomyService.prototype.getAll = function () {
+    ResearchInstitutionService.prototype.getAll = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.equipmentTaxonomyRepository.find()];
+                return [2 /*return*/, this.researchInstitutionRepository.find()];
             });
         });
     };
-    EquipmentTaxonomyService.prototype.getById = function (id) {
+    ResearchInstitutionService.prototype.getById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.equipmentTaxonomyRepository.findOne(id)];
+                return [2 /*return*/, this.researchInstitutionRepository.findOneBy({ id: id })];
             });
         });
     };
-    EquipmentTaxonomyService.prototype.create = function (data) {
+    ResearchInstitutionService.prototype.create = function (data) {
         return __awaiter(this, void 0, void 0, function () {
-            var equipmentTaxonomy;
+            var institution;
             return __generator(this, function (_a) {
-                equipmentTaxonomy = this.equipmentTaxonomyRepository.create(data);
-                return [2 /*return*/, this.equipmentTaxonomyRepository.save(equipmentTaxonomy)];
+                institution = this.researchInstitutionRepository.create(data);
+                return [2 /*return*/, this.researchInstitutionRepository.save(institution)];
             });
         });
     };
-    EquipmentTaxonomyService.prototype.update = function (id, data) {
+    ResearchInstitutionService.prototype.update = function (id, data) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.equipmentTaxonomyRepository.update(id, data)];
+                    case 0: return [4 /*yield*/, this.researchInstitutionRepository.update(id, data)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, this.equipmentTaxonomyRepository.findOne(id)];
+                        return [2 /*return*/, this.researchInstitutionRepository.findOneBy({ id: id })];
                 }
             });
         });
     };
-    EquipmentTaxonomyService.prototype.delete = function (id) {
+    ResearchInstitutionService.prototype.delete = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.equipmentTaxonomyRepository.delete(id)];
+                return [2 /*return*/, this.researchInstitutionRepository.delete(id)];
             });
         });
     };
-    return EquipmentTaxonomyService;
+    return ResearchInstitutionService;
 }());
-exports.EquipmentTaxonomyService = EquipmentTaxonomyService;
+exports.ResearchInstitutionService = ResearchInstitutionService;

@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TaxonomyController = void 0;
 var EquipmentTaxonomyService_1 = require("../services/EquipmentTaxonomyService");
-var taxonomyService = new EquipmentTaxonomyService_1.TaxonomyService();
+var equipmentTaxonomyService = new EquipmentTaxonomyService_1.EquipmentTaxonomyService();
 var TaxonomyController = /** @class */ (function () {
     function TaxonomyController() {
     }
@@ -63,7 +63,7 @@ var TaxonomyController = /** @class */ (function () {
             var taxonomy;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, taxonomyService.getAll()];
+                    case 0: return [4 /*yield*/, equipmentTaxonomyService.getAll()];
                     case 1:
                         taxonomy = _a.sent();
                         res.json(taxonomy);
@@ -96,7 +96,7 @@ var TaxonomyController = /** @class */ (function () {
             var taxonomy;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, taxonomyService.getById(Number(req.params.id))];
+                    case 0: return [4 /*yield*/, equipmentTaxonomyService.getById(Number(req.params.id))];
                     case 1:
                         taxonomy = _a.sent();
                         if (!taxonomy) {
@@ -144,7 +144,7 @@ var TaxonomyController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, taxonomyService.create(req.body)];
+                        return [4 /*yield*/, equipmentTaxonomyService.create(req.body)];
                     case 1:
                         taxonomy = _a.sent();
                         res.json(taxonomy);
@@ -203,7 +203,7 @@ var TaxonomyController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, taxonomyService.update(Number(req.params.id), req.body)];
+                        return [4 /*yield*/, equipmentTaxonomyService.update(Number(req.params.id), req.body)];
                     case 1:
                         taxonomy = _a.sent();
                         if (!taxonomy) {
@@ -247,7 +247,7 @@ var TaxonomyController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, taxonomyService.delete(Number(req.params.id))];
+                        return [4 /*yield*/, equipmentTaxonomyService.delete(Number(req.params.id))];
                     case 1:
                         _a.sent();
                         res.sendStatus(204);
@@ -288,7 +288,7 @@ var TaxonomyController = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         equipmentId = req.params.equipmentId;
-                        return [4 /*yield*/, taxonomyService.getByEquipmentId(Number(equipmentId))];
+                        return [4 /*yield*/, equipmentTaxonomyService.getByEquipmentId(Number(equipmentId))];
                     case 1:
                         taxonomy = _a.sent();
                         if (!taxonomy) {

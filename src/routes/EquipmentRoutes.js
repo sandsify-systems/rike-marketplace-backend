@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var EquipmentController_1 = require("../controllers/EquipmentController");
+var router = (0, express_1.Router)();
+var equipmentController = new EquipmentController_1.EquipmentController();
+router.get('/', function (req, res) { return equipmentController.getAll(req, res); });
+router.get('/:id', function (req, res) { return equipmentController.getById(req, res); });
+router.post('/', function (req, res) { return equipmentController.create(req, res); });
+router.put('/:id', function (req, res) { return equipmentController.update(req, res); });
+router.delete('/:id', function (req, res) { return equipmentController.delete(req, res); });
+exports.default = router;

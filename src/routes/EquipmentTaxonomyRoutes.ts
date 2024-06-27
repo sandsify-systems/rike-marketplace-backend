@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { TaxonomyController } from '../controllers/TaxonomyController';
+import { TaxonomyController } from '../controllers/EquipmentTaxonomyController';
 
 const router = Router();
 const Taxonomy = new TaxonomyController();

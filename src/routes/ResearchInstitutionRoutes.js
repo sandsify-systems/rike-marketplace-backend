@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var ResearchInstitutionController_1 = require("../controllers/ResearchInstitutionController");
+var router = (0, express_1.Router)();
+var ResearchInstitution = new ResearchInstitutionController_1.ResearchInstitutionController();
+router.get('/', function (req, res) { return ResearchInstitution.getAll(req, res); });
+router.get('/:id', function (req, res) { return ResearchInstitution.getById(req, res); });
+router.post('/', function (req, res) { return ResearchInstitution.create(req, res); });
+router.put('/:id', function (req, res) { return ResearchInstitution.update(req, res); });
+router.delete('/:id', function (req, res) { return ResearchInstitution.delete(req, res); });
+exports.default = router;

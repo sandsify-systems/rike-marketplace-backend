@@ -9,7 +9,7 @@ import orderRoutes from './routes/orderRoutes';
 import transactionRoutes from './routes/transactionRoutes';
 import researchInstitutionRoutes from './routes/ResearchInstitutionRoutes';
 import equipmentRoutes from './routes/EquipmentRoutes';
-import taxonomyRoutes from './routes/TaxonomyRoutes';
+import equipmentTaxonomyRoutes from './routes/equipmentTaxonomyRoutes';
 import { swaggerSetup, swaggerSpec } from '../swagger';
 import swaggerUI from 'swagger-ui-express'; // Import swaggerUI
 
@@ -38,7 +38,7 @@ AppDataSource.initialize()
     app.use('/transactions', transactionRoutes);
     app.use('/research-institutions', researchInstitutionRoutes);
     app.use('/equipment', equipmentRoutes);
-    app.use('/taxonomy', taxonomyRoutes);
+    app.use('/equipmentTaxonomy', equipmentTaxonomyRoutes);
 
     // Serve Swagger UI
     app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));

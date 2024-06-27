@@ -54,7 +54,14 @@ var EquipmentTaxonomyService = /** @class */ (function () {
     EquipmentTaxonomyService.prototype.getById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.equipmentTaxonomyRepository.findOne(id)];
+                return [2 /*return*/, this.equipmentTaxonomyRepository.findOneBy({ id: id })];
+            });
+        });
+    };
+    EquipmentTaxonomyService.prototype.getByEquipmentId = function (equipmentId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.equipmentTaxonomyRepository.find({ where: { equipment: { id: equipmentId } } })];
             });
         });
     };
@@ -74,7 +81,7 @@ var EquipmentTaxonomyService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.equipmentTaxonomyRepository.update(id, data)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, this.equipmentTaxonomyRepository.findOne(id)];
+                        return [2 /*return*/, this.equipmentTaxonomyRepository.findOneBy({ id: id })];
                 }
             });
         });

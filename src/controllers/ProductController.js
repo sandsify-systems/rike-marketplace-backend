@@ -36,37 +36,37 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaxonomyController = void 0;
-var EquipmentTaxonomyService_1 = require("../services/EquipmentTaxonomyService");
-var taxonomyService = new EquipmentTaxonomyService_1.TaxonomyService();
-var TaxonomyController = /** @class */ (function () {
-    function TaxonomyController() {
+exports.ProductController = void 0;
+var ProductService_1 = require("../services/ProductService");
+var productService = new ProductService_1.ProductService();
+var ProductController = /** @class */ (function () {
+    function ProductController() {
     }
     /**
      * @swagger
      * tags:
-     *   name: Taxonomy
-     *   description: Operations related to taxonomy management
+     *   name: Products
+     *   description: API endpoints for managing products.
      */
     /**
      * @swagger
-     * /api/taxonomy:
+     * /products:
      *   get:
-     *     summary: Retrieve all taxonomy entries.
-     *     tags: [Taxonomy]
+     *     summary: Retrieve all products
+     *     tags: [Products]
      *     responses:
-     *       200:
-     *         description: A list of taxonomy entries.
+     *       '200':
+     *         description: A list of products
      */
-    TaxonomyController.prototype.getAll = function (req, res) {
+    ProductController.prototype.getAll = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var taxonomy;
+            var products;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, taxonomyService.getAll()];
+                    case 0: return [4 /*yield*/, productService.getAll()];
                     case 1:
-                        taxonomy = _a.sent();
-                        res.json(taxonomy);
+                        products = _a.sent();
+                        res.json(products);
                         return [2 /*return*/];
                 }
             });
@@ -74,35 +74,35 @@ var TaxonomyController = /** @class */ (function () {
     };
     /**
      * @swagger
-     * /api/taxonomy/{id}:
+     * /products/{id}:
      *   get:
-     *     summary: Retrieve a single taxonomy entry by ID.
-     *     tags: [Taxonomy]
+     *     summary: Retrieve a single product by ID
+     *     tags: [Products]
      *     parameters:
      *       - in: path
      *         name: id
      *         required: true
      *         schema:
      *           type: integer
-     *         description: ID of the taxonomy entry to retrieve.
+     *         description: ID of the product to retrieve
      *     responses:
-     *       200:
-     *         description: A single taxonomy entry object.
-     *       404:
-     *         description: Taxonomy entry not found.
+     *       '200':
+     *         description: A product object
+     *       '404':
+     *         description: Product not found
      */
-    TaxonomyController.prototype.getById = function (req, res) {
+    ProductController.prototype.getById = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var taxonomy;
+            var product;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, taxonomyService.getById(Number(req.params.id))];
+                    case 0: return [4 /*yield*/, productService.getById(Number(req.params.id))];
                     case 1:
-                        taxonomy = _a.sent();
-                        if (!taxonomy) {
-                            return [2 /*return*/, res.status(404).json({ message: 'Taxonomy entry not found' })];
+                        product = _a.sent();
+                        if (!product) {
+                            return [2 /*return*/, res.status(404).json({ message: 'Product not found' })];
                         }
-                        res.json(taxonomy);
+                        res.json(product);
                         return [2 /*return*/];
                 }
             });
@@ -110,10 +110,10 @@ var TaxonomyController = /** @class */ (function () {
     };
     /**
      * @swagger
-     * /api/taxonomy:
+     * /products:
      *   post:
-     *     summary: Create a new taxonomy entry.
-     *     tags: [Taxonomy]
+     *     summary: Create a new product
+     *     tags: [Products]
      *     requestBody:
      *       required: true
      *       content:
@@ -121,37 +121,50 @@ var TaxonomyController = /** @class */ (function () {
      *           schema:
      *             type: object
      *             properties:
-     *               equipmentID:
+     *               title:
+     *                 type: string
+     *                 description: Title of the product
+     *               image:
+     *                 type: string
+     *                 description: URL of the product image
+     *               description:
+     *                 type: string
+     *                 description: Description of the product
+     *               price:
+     *                 type: number
+     *                 description: Price of the product
+     *               likes:
+     *                 type: number
+     *                 description: Number of likes for the product default = 0
+     *               categoryId:
      *                 type: integer
-     *               parameter:
-     *                 type: string
-     *               value:
-     *                 type: string
-     *             required:
-     *               - equipmentID
-     *               - parameter
-     *               - value
+     *                 description: ID of the product category
+     *             example:
+     *               title: MacBook Pro
+     *               image: https://example.com/macbook.jpg
+     *               description: A high-end laptop from Apple
+     *               price: 1999.99
+     *               likes: 0
+     *               categoryId: 1
      *     responses:
-     *       200:
-     *         description: The created taxonomy entry object.
-     *       400:
-     *         description: Bad request. Missing required fields.
+     *       '200':
+     *         description: Created product object
      */
-    TaxonomyController.prototype.create = function (req, res) {
+    ProductController.prototype.create = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var taxonomy, err_1;
+            var product, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, taxonomyService.create(req.body)];
+                        return [4 /*yield*/, productService.create(req.body)];
                     case 1:
-                        taxonomy = _a.sent();
-                        res.json(taxonomy);
+                        product = _a.sent();
+                        res.json(product);
                         return [3 /*break*/, 3];
                     case 2:
-                        err_1 = _a.sent();
-                        res.status(400).json({ error: err_1.message });
+                        error_1 = _a.sent();
+                        res.status(400).json({ message: error_1.message });
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
                 }
@@ -160,17 +173,17 @@ var TaxonomyController = /** @class */ (function () {
     };
     /**
      * @swagger
-     * /api/taxonomy/{id}:
+     * /products/{id}:
      *   put:
-     *     summary: Update an existing taxonomy entry by ID.
-     *     tags: [Taxonomy]
+     *     summary: Update a product by ID
+     *     tags: [Products]
      *     parameters:
      *       - in: path
      *         name: id
      *         required: true
      *         schema:
      *           type: integer
-     *         description: ID of the taxonomy entry to update.
+     *         description: ID of the product to update
      *     requestBody:
      *       required: true
      *       content:
@@ -178,43 +191,55 @@ var TaxonomyController = /** @class */ (function () {
      *           schema:
      *             type: object
      *             properties:
-     *               equipmentID:
+     *               title:
+     *                 type: string
+     *                 description: Updated title of the product
+     *               image:
+     *                 type: string
+     *                 description: Updated URL of the product image
+     *               description:
+     *                 type: string
+     *                 description: Updated description of the product
+     *               price:
+     *                 type: number
+     *                 description: Updated price of the product
+     *               likes:
+     *                 type: number
+     *                 description: Updated number of likes for the product
+     *               categoryId:
      *                 type: integer
-     *               parameter:
-     *                 type: string
-     *               value:
-     *                 type: string
-     *             required:
-     *               - equipmentID
-     *               - parameter
-     *               - value
+     *                 description: Updated ID of the product category
+     *             example:
+     *               title: MacBook Pro (Updated)
+     *               image: https://example.com/macbook_updated.jpg
+     *               description: A high-end laptop from Apple (Updated)
+     *               price: 2199.99
+     *               likes: 10
+     *               categoryId: 1
      *     responses:
-     *       200:
-     *         description: The updated taxonomy entry object.
-     *       404:
-     *         description: Taxonomy entry not found.
-     *       400:
-     *         description: Bad request. Missing required fields.
+     *       '200':
+     *         description: Updated product object
+     *       '404':
+     *         description: Product not found
      */
-    TaxonomyController.prototype.update = function (req, res) {
+    ProductController.prototype.update = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var taxonomy, err_2;
+            var product, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, taxonomyService.update(Number(req.params.id), req.body)];
+                        return [4 /*yield*/, productService.update(Number(req.params.id), req.body)];
                     case 1:
-                        taxonomy = _a.sent();
-                        if (!taxonomy) {
-                            res.status(404).json({ error: 'Taxonomy entry not found' });
-                            return [2 /*return*/];
+                        product = _a.sent();
+                        if (!product) {
+                            return [2 /*return*/, res.status(404).json({ message: 'Product not found' })];
                         }
-                        res.json(taxonomy);
+                        res.json(product);
                         return [3 /*break*/, 3];
                     case 2:
-                        err_2 = _a.sent();
-                        res.status(400).json({ error: err_2.message });
+                        error_2 = _a.sent();
+                        res.status(400).json({ message: error_2.message });
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
                 }
@@ -223,38 +248,38 @@ var TaxonomyController = /** @class */ (function () {
     };
     /**
      * @swagger
-     * /api/taxonomy/{id}:
+     * /products/{id}:
      *   delete:
-     *     summary: Delete a taxonomy entry by ID.
-     *     tags: [Taxonomy]
+     *     summary: Delete a product by ID
+     *     tags: [Products]
      *     parameters:
      *       - in: path
      *         name: id
      *         required: true
      *         schema:
      *           type: integer
-     *         description: ID of the taxonomy entry to delete.
+     *         description: ID of the product to delete
      *     responses:
-     *       204:
-     *         description: Taxonomy entry successfully deleted.
-     *       404:
-     *         description: Taxonomy entry not found.
+     *       '204':
+     *         description: No content, product deleted
+     *       '404':
+     *         description: Product not found
      */
-    TaxonomyController.prototype.delete = function (req, res) {
+    ProductController.prototype.delete = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var err_3;
+            var error_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, taxonomyService.delete(Number(req.params.id))];
+                        return [4 /*yield*/, productService.delete(Number(req.params.id))];
                     case 1:
                         _a.sent();
                         res.sendStatus(204);
                         return [3 /*break*/, 3];
                     case 2:
-                        err_3 = _a.sent();
-                        res.status(404).json({ error: 'Taxonomy entry not found' });
+                        error_3 = _a.sent();
+                        res.status(400).json({ message: error_3.message });
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
                 }
@@ -263,49 +288,35 @@ var TaxonomyController = /** @class */ (function () {
     };
     /**
      * @swagger
-     * /api/taxonomy/by-equipment/{equipmentId}:
+     * /products/category/{categoryId}:
      *   get:
-     *     summary: Retrieve taxonomy entries by equipment ID.
-     *     tags: [Taxonomy]
+     *     summary: Retrieve products by category ID
+     *     tags: [Products]
      *     parameters:
      *       - in: path
-     *         name: equipmentId
+     *         name: categoryId
      *         required: true
      *         schema:
      *           type: integer
-     *         description: ID of the equipment to retrieve taxonomy entries for.
+     *         description: ID of the product category
      *     responses:
-     *       200:
-     *         description: A list of taxonomy entries associated with the equipment.
-     *       404:
-     *         description: No taxonomy entries found for the specified equipment ID.
+     *       '200':
+     *         description: A list of products in the category
      */
-    TaxonomyController.prototype.getByEquipment = function (req, res) {
+    ProductController.prototype.findByCategoryId = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var equipmentId, taxonomy, err_4;
+            var products;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        equipmentId = req.params.equipmentId;
-                        return [4 /*yield*/, taxonomyService.getByEquipmentId(Number(equipmentId))];
+                    case 0: return [4 /*yield*/, productService.findByCategoryId(Number(req.params.categoryId))];
                     case 1:
-                        taxonomy = _a.sent();
-                        if (!taxonomy) {
-                            res.status(404).json({ error: 'No taxonomy entries found for the specified equipment ID' });
-                            return [2 /*return*/];
-                        }
-                        res.json(taxonomy);
-                        return [3 /*break*/, 3];
-                    case 2:
-                        err_4 = _a.sent();
-                        res.status(500).json({ error: err_4.message });
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                        products = _a.sent();
+                        res.json(products);
+                        return [2 /*return*/];
                 }
             });
         });
     };
-    return TaxonomyController;
+    return ProductController;
 }());
-exports.TaxonomyController = TaxonomyController;
+exports.ProductController = ProductController;

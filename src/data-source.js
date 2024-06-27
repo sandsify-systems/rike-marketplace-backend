@@ -26,7 +26,7 @@ exports.AppDataSource = new typeorm_1.DataSource({
     password: process.env.DB_PASSWORD || '',
     database: process.env.DB_DATABASE || 'marketplace',
     synchronize: true,
-    logging: true,
+    logging: false,
     entities: [
         Product_1.Product,
         ProductCategory_1.ProductCategory,

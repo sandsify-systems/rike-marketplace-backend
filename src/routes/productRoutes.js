@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var ProductController_1 = require("../controllers/ProductController");
+var router = (0, express_1.Router)();
+var productController = new ProductController_1.ProductController();
+router.get('/', function (req, res) { return productController.getAll(req, res); });
+router.get('/:id', function (req, res) { return productController.getById(req, res); });
+router.post('/', function (req, res) { return productController.create(req, res); });
+router.put('/:id', function (req, res) { return productController.update(req, res); });
+router.delete('/:id', function (req, res) { return productController.delete(req, res); });
+exports.default = router;

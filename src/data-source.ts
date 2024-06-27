@@ -8,7 +8,7 @@ import { OrderItem } from './entity/OrderItem'; // Import OrderItem
 import { Transaction } from './entity/Transaction';
 import { ResearchInstitution } from './entity/ResearchInstitution';
 import { Equipment } from './entity/Equipment';
-import { Taxonomy } from './entity/Taxonomy';
+import { EquipmentTaxonomy } from './entity/EquipmentTaxonomy';
 import dotenv from 'dotenv';
 
 // Load environment variables from .env file
@@ -33,7 +33,7 @@ export const AppDataSource = new DataSource({
     Transaction, 
     ResearchInstitution, 
     Equipment, 
-    Taxonomy
+    EquipmentTaxonomy
   ], // Add OrderItem to entities
   migrations: [],
   subscribers: [],

@@ -36,37 +36,37 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaxonomyController = void 0;
-var EquipmentTaxonomyService_1 = require("../services/EquipmentTaxonomyService");
-var taxonomyService = new EquipmentTaxonomyService_1.TaxonomyService();
-var TaxonomyController = /** @class */ (function () {
-    function TaxonomyController() {
+exports.EquipmentController = void 0;
+var EquipmentService_1 = require("../services/EquipmentService");
+var equipmentService = new EquipmentService_1.EquipmentService();
+var EquipmentController = /** @class */ (function () {
+    function EquipmentController() {
     }
     /**
      * @swagger
      * tags:
-     *   name: Taxonomy
-     *   description: Operations related to taxonomy management
+     *   name: Equipment
+     *   description: Operations related to equipment management
      */
     /**
      * @swagger
-     * /api/taxonomy:
+     * /api/equipment:
      *   get:
-     *     summary: Retrieve all taxonomy entries.
-     *     tags: [Taxonomy]
+     *     summary: Retrieve all equipment entries.
+     *     tags: [Equipment]
      *     responses:
      *       200:
-     *         description: A list of taxonomy entries.
+     *         description: A list of equipment entries.
      */
-    TaxonomyController.prototype.getAll = function (req, res) {
+    EquipmentController.prototype.getAll = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var taxonomy;
+            var equipment;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, taxonomyService.getAll()];
+                    case 0: return [4 /*yield*/, equipmentService.getAll()];
                     case 1:
-                        taxonomy = _a.sent();
-                        res.json(taxonomy);
+                        equipment = _a.sent();
+                        res.json(equipment);
                         return [2 /*return*/];
                 }
             });
@@ -74,35 +74,35 @@ var TaxonomyController = /** @class */ (function () {
     };
     /**
      * @swagger
-     * /api/taxonomy/{id}:
+     * /api/equipment/{id}:
      *   get:
-     *     summary: Retrieve a single taxonomy entry by ID.
-     *     tags: [Taxonomy]
+     *     summary: Retrieve a single equipment entry by ID.
+     *     tags: [Equipment]
      *     parameters:
      *       - in: path
      *         name: id
      *         required: true
      *         schema:
      *           type: integer
-     *         description: ID of the taxonomy entry to retrieve.
+     *         description: ID of the equipment entry to retrieve.
      *     responses:
      *       200:
-     *         description: A single taxonomy entry object.
+     *         description: A single equipment entry object.
      *       404:
-     *         description: Taxonomy entry not found.
+     *         description: Equipment entry not found.
      */
-    TaxonomyController.prototype.getById = function (req, res) {
+    EquipmentController.prototype.getById = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var taxonomy;
+            var equipment;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, taxonomyService.getById(Number(req.params.id))];
+                    case 0: return [4 /*yield*/, equipmentService.getById(Number(req.params.id))];
                     case 1:
-                        taxonomy = _a.sent();
-                        if (!taxonomy) {
-                            return [2 /*return*/, res.status(404).json({ message: 'Taxonomy entry not found' })];
+                        equipment = _a.sent();
+                        if (!equipment) {
+                            return [2 /*return*/, res.status(404).json({ message: 'Equipment entry not found' })];
                         }
-                        res.json(taxonomy);
+                        res.json(equipment);
                         return [2 /*return*/];
                 }
             });
@@ -110,10 +110,10 @@ var TaxonomyController = /** @class */ (function () {
     };
     /**
      * @swagger
-     * /api/taxonomy:
+     * /api/equipment:
      *   post:
-     *     summary: Create a new taxonomy entry.
-     *     tags: [Taxonomy]
+     *     summary: Create a new equipment entry.
+     *     tags: [Equipment]
      *     requestBody:
      *       required: true
      *       content:
@@ -121,33 +121,37 @@ var TaxonomyController = /** @class */ (function () {
      *           schema:
      *             type: object
      *             properties:
-     *               equipmentID:
+     *               name:
+     *                 type: string
+     *               description:
+     *                 type: string
+     *               availability:
+     *                 type: boolean
+     *               verificationStatus:
+     *                 type: boolean
+     *               verifiedBy:
      *                 type: integer
-     *               parameter:
-     *                 type: string
-     *               value:
-     *                 type: string
      *             required:
-     *               - equipmentID
-     *               - parameter
-     *               - value
+     *               - name
+     *               - description
+     *               - availability
      *     responses:
      *       200:
-     *         description: The created taxonomy entry object.
+     *         description: The created equipment entry object.
      *       400:
      *         description: Bad request. Missing required fields.
      */
-    TaxonomyController.prototype.create = function (req, res) {
+    EquipmentController.prototype.create = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var taxonomy, err_1;
+            var equipment, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, taxonomyService.create(req.body)];
+                        return [4 /*yield*/, equipmentService.create(req.body)];
                     case 1:
-                        taxonomy = _a.sent();
-                        res.json(taxonomy);
+                        equipment = _a.sent();
+                        res.json(equipment);
                         return [3 /*break*/, 3];
                     case 2:
                         err_1 = _a.sent();
@@ -160,17 +164,17 @@ var TaxonomyController = /** @class */ (function () {
     };
     /**
      * @swagger
-     * /api/taxonomy/{id}:
+     * /api/equipment/{id}:
      *   put:
-     *     summary: Update an existing taxonomy entry by ID.
-     *     tags: [Taxonomy]
+     *     summary: Update an existing equipment entry by ID.
+     *     tags: [Equipment]
      *     parameters:
      *       - in: path
      *         name: id
      *         required: true
      *         schema:
      *           type: integer
-     *         description: ID of the taxonomy entry to update.
+     *         description: ID of the equipment entry to update.
      *     requestBody:
      *       required: true
      *       content:
@@ -178,39 +182,43 @@ var TaxonomyController = /** @class */ (function () {
      *           schema:
      *             type: object
      *             properties:
-     *               equipmentID:
+     *               name:
+     *                 type: string
+     *               description:
+     *                 type: string
+     *               availability:
+     *                 type: boolean
+     *               verificationStatus:
+     *                 type: boolean
+     *               verifiedBy:
      *                 type: integer
-     *               parameter:
-     *                 type: string
-     *               value:
-     *                 type: string
      *             required:
-     *               - equipmentID
-     *               - parameter
-     *               - value
+     *               - name
+     *               - description
+     *               - availability
      *     responses:
      *       200:
-     *         description: The updated taxonomy entry object.
+     *         description: The updated equipment entry object.
      *       404:
-     *         description: Taxonomy entry not found.
+     *         description: Equipment entry not found.
      *       400:
      *         description: Bad request. Missing required fields.
      */
-    TaxonomyController.prototype.update = function (req, res) {
+    EquipmentController.prototype.update = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var taxonomy, err_2;
+            var equipment, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, taxonomyService.update(Number(req.params.id), req.body)];
+                        return [4 /*yield*/, equipmentService.update(Number(req.params.id), req.body)];
                     case 1:
-                        taxonomy = _a.sent();
-                        if (!taxonomy) {
-                            res.status(404).json({ error: 'Taxonomy entry not found' });
+                        equipment = _a.sent();
+                        if (!equipment) {
+                            res.status(404).json({ message: 'Equipment entry not found' });
                             return [2 /*return*/];
                         }
-                        res.json(taxonomy);
+                        res.json(equipment);
                         return [3 /*break*/, 3];
                     case 2:
                         err_2 = _a.sent();
@@ -223,89 +231,44 @@ var TaxonomyController = /** @class */ (function () {
     };
     /**
      * @swagger
-     * /api/taxonomy/{id}:
+     * /api/equipment/{id}:
      *   delete:
-     *     summary: Delete a taxonomy entry by ID.
-     *     tags: [Taxonomy]
+     *     summary: Delete an equipment entry by ID.
+     *     tags: [Equipment]
      *     parameters:
      *       - in: path
      *         name: id
      *         required: true
      *         schema:
      *           type: integer
-     *         description: ID of the taxonomy entry to delete.
+     *         description: ID of the equipment entry to delete.
      *     responses:
      *       204:
-     *         description: Taxonomy entry successfully deleted.
+     *         description: Equipment entry successfully deleted.
      *       404:
-     *         description: Taxonomy entry not found.
+     *         description: Equipment entry not found.
      */
-    TaxonomyController.prototype.delete = function (req, res) {
+    EquipmentController.prototype.delete = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var err_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, taxonomyService.delete(Number(req.params.id))];
+                        return [4 /*yield*/, equipmentService.delete(Number(req.params.id))];
                     case 1:
                         _a.sent();
                         res.sendStatus(204);
                         return [3 /*break*/, 3];
                     case 2:
                         err_3 = _a.sent();
-                        res.status(404).json({ error: 'Taxonomy entry not found' });
+                        res.status(404).json({ error: 'Equipment entry not found' });
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
                 }
             });
         });
     };
-    /**
-     * @swagger
-     * /api/taxonomy/by-equipment/{equipmentId}:
-     *   get:
-     *     summary: Retrieve taxonomy entries by equipment ID.
-     *     tags: [Taxonomy]
-     *     parameters:
-     *       - in: path
-     *         name: equipmentId
-     *         required: true
-     *         schema:
-     *           type: integer
-     *         description: ID of the equipment to retrieve taxonomy entries for.
-     *     responses:
-     *       200:
-     *         description: A list of taxonomy entries associated with the equipment.
-     *       404:
-     *         description: No taxonomy entries found for the specified equipment ID.
-     */
-    TaxonomyController.prototype.getByEquipment = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            var equipmentId, taxonomy, err_4;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        equipmentId = req.params.equipmentId;
-                        return [4 /*yield*/, taxonomyService.getByEquipmentId(Number(equipmentId))];
-                    case 1:
-                        taxonomy = _a.sent();
-                        if (!taxonomy) {
-                            res.status(404).json({ error: 'No taxonomy entries found for the specified equipment ID' });
-                            return [2 /*return*/];
-                        }
-                        res.json(taxonomy);
-                        return [3 /*break*/, 3];
-                    case 2:
-                        err_4 = _a.sent();
-                        res.status(500).json({ error: err_4.message });
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    return TaxonomyController;
+    return EquipmentController;
 }());
-exports.TaxonomyController = TaxonomyController;
+exports.EquipmentController = EquipmentController;
