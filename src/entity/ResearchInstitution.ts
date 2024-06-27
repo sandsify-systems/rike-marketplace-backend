@@ -27,9 +27,13 @@ export class ResearchInstitution {
   @ManyToOne(() => User, user => user.createdResearchInstitutions, { lazy: true })
   createdBy: User;
 
-  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ nullable: true, type: 'timestamp' }) // Example nullable column with timestamp type
   createdAt: Date;
 
-  @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
+  @Column({
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP', // Default value set to current timestamp
+    onUpdate: 'CURRENT_TIMESTAMP', // On update also set to current timestamp
+  })
   updatedAt: Date;
 }
