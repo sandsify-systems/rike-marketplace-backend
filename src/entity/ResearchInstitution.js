@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResearchInstitution = void 0;
-// ResearchInstitution.ts
 var typeorm_1 = require("typeorm");
 var User_1 = require("./User");
 var ResearchInstitution = /** @class */ (function () {
@@ -49,11 +48,11 @@ var ResearchInstitution = /** @class */ (function () {
         __metadata("design:type", User_1.User)
     ], ResearchInstitution.prototype, "createdBy", void 0);
     __decorate([
-        (0, typeorm_1.CreateDateColumn)(),
+        (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', default: function () { return 'CURRENT_TIMESTAMP'; } }),
         __metadata("design:type", Date)
     ], ResearchInstitution.prototype, "createdAt", void 0);
     __decorate([
-        (0, typeorm_1.UpdateDateColumn)(),
+        (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp', default: function () { return 'CURRENT_TIMESTAMP'; }, onUpdate: 'CURRENT_TIMESTAMP' }),
         __metadata("design:type", Date)
     ], ResearchInstitution.prototype, "updatedAt", void 0);
     ResearchInstitution = __decorate([
