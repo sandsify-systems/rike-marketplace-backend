@@ -1,6 +1,5 @@
 import swaggerJSDoc from 'swagger-jsdoc';
 import { Express } from 'express';
-import * as path from 'path'; // Ensure path is imported for resolving file paths
 
 const swaggerDefinition = {
   openapi: '3.0.0',
@@ -17,10 +16,9 @@ const swaggerDefinition = {
   ],
 };
 
-// Adjust paths to include API routes correctly
 const options = {
   swaggerDefinition,
-  apis: [path.resolve(__dirname, './src/controllers/*.ts')], // Absolute path to the API routes folder
+  apis: ['./src/controllers/*.ts'], // Path to the API routes folder
 };
 
 export const swaggerSpec = swaggerJSDoc(options);

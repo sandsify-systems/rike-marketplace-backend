@@ -20,10 +20,14 @@ export class User {
   @Column()
   image: string;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ nullable: true, type: 'timestamp' }) // Example nullable column with timestamp type
   createdAt: Date;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
+  @Column({
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP', // Default value set to current timestamp
+    onUpdate: 'CURRENT_TIMESTAMP', // On update also set to current timestamp
+  })
   updatedAt: Date;
 
   @Column({ nullable: true })
@@ -44,7 +48,11 @@ export class User {
   @Column({ default: 1 })
   accountStatus: number;
 
-  @Column({ enum: ['admin', 'institution', 'researcher', 'explorer'] })
+  @Column({
+    type: 'enum',
+    enum: ['admin', 'institution', 'researcher', 'explorer'],
+    default: 'explorer', // Example default role
+  })
   role: string;
 }
 

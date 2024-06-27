@@ -72,9 +72,13 @@ export class UserController {
    *               email:
    *                 type: string
    *                 description: Email address of the user
+   *               password:
+   *                 type: string
+   *                 description: Password for the user
    *             example:
    *               username: john_doe
    *               email: john.doe@example.com
+   *               password: securePassword123
    *     responses:
    *       '200':
    *         description: Created user object
