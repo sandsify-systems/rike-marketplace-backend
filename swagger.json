@@ -157,6 +157,177 @@
         }
       }
     },
+    "/api/equipment": {
+      "get": {
+        "summary": "Retrieve all equipment entries.",
+        "tags": [
+          "Equipment"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of equipment entries."
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new equipment entry.",
+        "tags": [
+          "Equipment"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "availability": {
+                    "type": "boolean"
+                  },
+                  "verificationStatus": {
+                    "type": "boolean"
+                  },
+                  "verifiedBy": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "name",
+                  "description",
+                  "availability"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created equipment entry object."
+          },
+          "400": {
+            "description": "Bad request. Missing required fields."
+          }
+        }
+      }
+    },
+    "/api/equipment/{id}": {
+      "get": {
+        "summary": "Retrieve a single equipment entry by ID.",
+        "tags": [
+          "Equipment"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the equipment entry to retrieve."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single equipment entry object."
+          },
+          "404": {
+            "description": "Equipment entry not found."
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an existing equipment entry by ID.",
+        "tags": [
+          "Equipment"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the equipment entry to update."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "availability": {
+                    "type": "boolean"
+                  },
+                  "verificationStatus": {
+                    "type": "boolean"
+                  },
+                  "verifiedBy": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "name",
+                  "description",
+                  "availability"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated equipment entry object."
+          },
+          "400": {
+            "description": "Bad request. Missing required fields."
+          },
+          "404": {
+            "description": "Equipment entry not found."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an equipment entry by ID.",
+        "tags": [
+          "Equipment"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the equipment entry to delete."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Equipment entry successfully deleted."
+          },
+          "404": {
+            "description": "Equipment entry not found."
+          }
+        }
+      }
+    },
     "/orders": {
       "get": {
         "summary": "Retrieve all orders",
@@ -1180,7 +1351,7 @@
       "get": {
         "summary": "Retrieve all users",
         "tags": [
-          "Users"
+          "Authentication"
         ],
         "responses": {
           "200": {
@@ -1191,7 +1362,7 @@
       "post": {
         "summary": "Create a new user",
         "tags": [
-          "Users"
+          "Authentication"
         ],
         "requestBody": {
           "required": true,
@@ -1248,7 +1419,7 @@
       "get": {
         "summary": "Retrieve a single user by ID",
         "tags": [
-          "Users"
+          "Authentication"
         ],
         "parameters": [
           {
@@ -1273,7 +1444,7 @@
       "put": {
         "summary": "Update a user by ID",
         "tags": [
-          "Users"
+          "Authentication"
         ],
         "parameters": [
           {
@@ -1336,7 +1507,7 @@
       "delete": {
         "summary": "Delete a user by ID",
         "tags": [
-          "Users"
+          "Authentication"
         ],
         "parameters": [
           {
@@ -1363,12 +1534,24 @@
   "components": {},
   "tags": [
     {
+      "name": "Authentication",
+      "description": "API endpoints for managing users."
+    },
+    {
       "name": "Customers",
       "description": "API endpoints for managing customers."
     },
     {
-      "name": "Orders",
-      "description": "API endpoints for managing orders."
+      "name": "Research Institutions",
+      "description": "Operations related to research institutions"
+    },
+    {
+      "name": "Equipment",
+      "description": "Operations related to equipment management"
+    },
+    {
+      "name": "Taxonomy",
+      "description": "Operations related to taxonomy management"
     },
     {
       "name": "Product Categories",
@@ -1377,22 +1560,14 @@
     {
       "name": "Products",
       "description": "API endpoints for managing products."
-    },
+    }, 
     {
-      "name": "Research Institutions",
-      "description": "Operations related to research institutions"
-    },
-    {
-      "name": "Taxonomy",
-      "description": "Operations related to taxonomy management"
-    },
+      "name": "Orders",
+      "description": "API endpoints for managing orders."
+    },  
     {
       "name": "Transactions",
       "description": "API endpoints for managing transactions."
-    },
-    {
-      "name": "Users",
-      "description": "API endpoints for managing users."
     }
   ]
 }
