@@ -12,6 +12,10 @@ export class TaxonomyService {
     return this.taxonomyRepository.findOneBy({ id });
   }
 
+  async getByEquipmentId(equipmentId: number) {
+    return this.taxonomyRepository.find({ where: { equipment: { id: equipmentId } } });
+  }
+
   async create(data: Partial<Taxonomy>) {
     const taxonomy = this.taxonomyRepository.create(data);
     return this.taxonomyRepository.save(taxonomy);

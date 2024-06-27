@@ -658,6 +658,375 @@
         }
       }
     },
+    "/api/research-institutions": {
+      "get": {
+        "summary": "Retrieve all research institutions.",
+        "tags": [
+          "Research Institutions"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of research institutions."
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new research institution.",
+        "tags": [
+          "Research Institutions"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "address",
+                  "city",
+                  "country",
+                  "phone",
+                  "email"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created research institution object."
+          },
+          "400": {
+            "description": "Bad request. Missing required fields."
+          }
+        }
+      }
+    },
+    "/api/research-institutions/{id}": {
+      "get": {
+        "summary": "Retrieve a single research institution by ID.",
+        "tags": [
+          "Research Institutions"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the research institution to retrieve."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single research institution object."
+          },
+          "404": {
+            "description": "Research institution not found."
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an existing research institution by ID.",
+        "tags": [
+          "Research Institutions"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the research institution to update."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "address",
+                  "city",
+                  "country",
+                  "phone",
+                  "email"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated research institution object."
+          },
+          "400": {
+            "description": "Bad request. Missing required fields."
+          },
+          "404": {
+            "description": "Research institution not found."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a research institution by ID.",
+        "tags": [
+          "Research Institutions"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the research institution to delete."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Research institution successfully deleted."
+          },
+          "404": {
+            "description": "Research institution not found."
+          }
+        }
+      }
+    },
+    "/api/taxonomy": {
+      "get": {
+        "summary": "Retrieve all taxonomy entries.",
+        "tags": [
+          "Taxonomy"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of taxonomy entries."
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new taxonomy entry.",
+        "tags": [
+          "Taxonomy"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "equipmentID": {
+                    "type": "integer"
+                  },
+                  "parameter": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "equipmentID",
+                  "parameter",
+                  "value"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created taxonomy entry object."
+          },
+          "400": {
+            "description": "Bad request. Missing required fields."
+          }
+        }
+      }
+    },
+    "/api/taxonomy/{id}": {
+      "get": {
+        "summary": "Retrieve a single taxonomy entry by ID.",
+        "tags": [
+          "Taxonomy"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the taxonomy entry to retrieve."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single taxonomy entry object."
+          },
+          "404": {
+            "description": "Taxonomy entry not found."
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an existing taxonomy entry by ID.",
+        "tags": [
+          "Taxonomy"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the taxonomy entry to update."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "equipmentID": {
+                    "type": "integer"
+                  },
+                  "parameter": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "equipmentID",
+                  "parameter",
+                  "value"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated taxonomy entry object."
+          },
+          "400": {
+            "description": "Bad request. Missing required fields."
+          },
+          "404": {
+            "description": "Taxonomy entry not found."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a taxonomy entry by ID.",
+        "tags": [
+          "Taxonomy"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the taxonomy entry to delete."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Taxonomy entry successfully deleted."
+          },
+          "404": {
+            "description": "Taxonomy entry not found."
+          }
+        }
+      }
+    },
+    "/api/taxonomy/by-equipment/{equipmentId}": {
+      "get": {
+        "summary": "Retrieve taxonomy entries by equipment ID.",
+        "tags": [
+          "Taxonomy"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "equipmentId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of the equipment to retrieve taxonomy entries for."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of taxonomy entries associated with the equipment."
+          },
+          "404": {
+            "description": "No taxonomy entries found for the specified equipment ID."
+          }
+        }
+      }
+    },
     "/transactions": {
       "get": {
         "summary": "Retrieve all transactions",
@@ -850,6 +1219,7 @@
                       "admin",
                       "institution",
                       "researcher",
+                      "agent",
                       "explorer"
                     ],
                     "description": "Role of the user",
@@ -1007,6 +1377,14 @@
     {
       "name": "Products",
       "description": "API endpoints for managing products."
+    },
+    {
+      "name": "Research Institutions",
+      "description": "Operations related to research institutions"
+    },
+    {
+      "name": "Taxonomy",
+      "description": "Operations related to taxonomy management"
     },
     {
       "name": "Transactions",

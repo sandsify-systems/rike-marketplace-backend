@@ -36,62 +36,61 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaxonomyService = void 0;
+exports.TransactionService = void 0;
 var data_source_1 = require("../data-source");
-var Taxonomy_1 = require("../entity/Taxonomy");
-var TaxonomyService = /** @class */ (function () {
-    function TaxonomyService() {
-        this.taxonomyRepository = data_source_1.AppDataSource.getRepository(Taxonomy_1.Taxonomy);
+var Transaction_1 = require("../entity/Transaction");
+var TransactionService = /** @class */ (function () {
+    function TransactionService() {
+        this.transactionRepository = data_source_1.AppDataSource.getRepository(Transaction_1.Transaction);
     }
-    TaxonomyService.prototype.getAll = function () {
+    TransactionService.prototype.getAll = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.taxonomyRepository.find()];
+                return [2 /*return*/, this.transactionRepository.find({ relations: ['order'] })];
             });
         });
     };
-    TaxonomyService.prototype.getById = function (id) {
+    TransactionService.prototype.getById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.taxonomyRepository.findOneBy({ id: id })];
+                return [2 /*return*/, this.transactionRepository.findOne({
+                        where: { id: id },
+                        relations: ['order']
+                    })];
             });
         });
     };
-    TaxonomyService.prototype.getByEquipmentId = function (equipmentId) {
+    TransactionService.prototype.create = function (transactionData) {
         return __awaiter(this, void 0, void 0, function () {
+            var transaction;
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.taxonomyRepository.find({ where: { equipment: { id: equipmentId } } })];
+                transaction = this.transactionRepository.create(transactionData);
+                return [2 /*return*/, this.transactionRepository.save(transaction)];
             });
         });
     };
-    TaxonomyService.prototype.create = function (data) {
-        return __awaiter(this, void 0, void 0, function () {
-            var taxonomy;
-            return __generator(this, function (_a) {
-                taxonomy = this.taxonomyRepository.create(data);
-                return [2 /*return*/, this.taxonomyRepository.save(taxonomy)];
-            });
-        });
-    };
-    TaxonomyService.prototype.update = function (id, data) {
+    TransactionService.prototype.update = function (id, transactionData) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.taxonomyRepository.update(id, data)];
+                    case 0: return [4 /*yield*/, this.transactionRepository.update(id, transactionData)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, this.taxonomyRepository.findOneBy({ id: id })];
+                        return [2 /*return*/, this.transactionRepository.findOne({
+                                where: { id: id },
+                                relations: ['order']
+                            })];
                 }
             });
         });
     };
-    TaxonomyService.prototype.delete = function (id) {
+    TransactionService.prototype.delete = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.taxonomyRepository.delete(id)];
+                return [2 /*return*/, this.transactionRepository.delete(id)];
             });
         });
     };
-    return TaxonomyService;
+    return TransactionService;
 }());
-exports.TaxonomyService = TaxonomyService;
+exports.TransactionService = TransactionService;

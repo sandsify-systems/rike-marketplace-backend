@@ -45,15 +45,14 @@ var ResearchInstitutionController = /** @class */ (function () {
     /**
      * @swagger
      * tags:
-     *   name: Research Institutions
-     *   description: Operations related to research institutions
+     *   name: ResearchInstitution
+     *   description: API endpoints for managing ResearchInstitution.
      */
     /**
      * @swagger
      * /api/research-institutions:
      *   get:
      *     summary: Retrieve all research institutions.
-     *     tags: [Research Institutions]
      *     responses:
      *       200:
      *         description: A list of research institutions.
@@ -77,7 +76,6 @@ var ResearchInstitutionController = /** @class */ (function () {
      * /api/research-institutions/{id}:
      *   get:
      *     summary: Retrieve a single research institution by ID.
-     *     tags: [Research Institutions]
      *     parameters:
      *       - in: path
      *         name: id
@@ -113,7 +111,6 @@ var ResearchInstitutionController = /** @class */ (function () {
      * /api/research-institutions:
      *   post:
      *     summary: Create a new research institution.
-     *     tags: [Research Institutions]
      *     requestBody:
      *       required: true
      *       content:
@@ -172,7 +169,6 @@ var ResearchInstitutionController = /** @class */ (function () {
      * /api/research-institutions/{id}:
      *   put:
      *     summary: Update an existing research institution by ID.
-     *     tags: [Research Institutions]
      *     parameters:
      *       - in: path
      *         name: id
@@ -244,7 +240,6 @@ var ResearchInstitutionController = /** @class */ (function () {
      * /api/research-institutions/{id}:
      *   delete:
      *     summary: Delete a research institution by ID.
-     *     tags: [Research Institutions]
      *     parameters:
      *       - in: path
      *         name: id

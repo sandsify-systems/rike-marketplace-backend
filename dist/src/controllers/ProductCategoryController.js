@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductCategoryController = void 0;
-var ProductCategoryService_1 = require("../service/ProductCategoryService");
+var ProductCategoryService_1 = require("../services/ProductCategoryService");
 var productCategoryService = new ProductCategoryService_1.ProductCategoryService();
 var ProductCategoryController = /** @class */ (function () {
     function ProductCategoryController() {

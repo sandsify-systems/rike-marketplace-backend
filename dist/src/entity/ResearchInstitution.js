@@ -44,15 +44,20 @@ var ResearchInstitution = /** @class */ (function () {
         __metadata("design:type", String)
     ], ResearchInstitution.prototype, "email", void 0);
     __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }),
+        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (user) { return user.createdResearchInstitutions; }, { lazy: true }),
         __metadata("design:type", User_1.User)
     ], ResearchInstitution.prototype, "createdBy", void 0);
     __decorate([
-        (0, typeorm_1.CreateDateColumn)(),
+        (0, typeorm_1.Column)({ nullable: true, type: 'timestamp' }) // Example nullable column with timestamp type
+        ,
         __metadata("design:type", Date)
     ], ResearchInstitution.prototype, "createdAt", void 0);
     __decorate([
-        (0, typeorm_1.UpdateDateColumn)(),
+        (0, typeorm_1.Column)({
+            type: 'timestamp',
+            default: function () { return 'CURRENT_TIMESTAMP'; }, // Default value set to current timestamp
+            onUpdate: 'CURRENT_TIMESTAMP', // On update also set to current timestamp
+        }),
         __metadata("design:type", Date)
     ], ResearchInstitution.prototype, "updatedAt", void 0);
     ResearchInstitution = __decorate([

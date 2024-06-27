@@ -36,62 +36,55 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaxonomyService = void 0;
+exports.ResearchInstitutionService = void 0;
 var data_source_1 = require("../data-source");
-var Taxonomy_1 = require("../entity/Taxonomy");
-var TaxonomyService = /** @class */ (function () {
-    function TaxonomyService() {
-        this.taxonomyRepository = data_source_1.AppDataSource.getRepository(Taxonomy_1.Taxonomy);
+var ResearchInstitution_1 = require("../entity/ResearchInstitution");
+var ResearchInstitutionService = /** @class */ (function () {
+    function ResearchInstitutionService() {
+        this.researchInstitutionRepository = data_source_1.AppDataSource.getRepository(ResearchInstitution_1.ResearchInstitution);
     }
-    TaxonomyService.prototype.getAll = function () {
+    ResearchInstitutionService.prototype.getAll = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.taxonomyRepository.find()];
+                return [2 /*return*/, this.researchInstitutionRepository.find()];
             });
         });
     };
-    TaxonomyService.prototype.getById = function (id) {
+    ResearchInstitutionService.prototype.getById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.taxonomyRepository.findOneBy({ id: id })];
+                return [2 /*return*/, this.researchInstitutionRepository.findOneBy({ id: id })];
             });
         });
     };
-    TaxonomyService.prototype.getByEquipmentId = function (equipmentId) {
+    ResearchInstitutionService.prototype.create = function (data) {
         return __awaiter(this, void 0, void 0, function () {
+            var institution;
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.taxonomyRepository.find({ where: { equipment: { id: equipmentId } } })];
+                institution = this.researchInstitutionRepository.create(data);
+                return [2 /*return*/, this.researchInstitutionRepository.save(institution)];
             });
         });
     };
-    TaxonomyService.prototype.create = function (data) {
-        return __awaiter(this, void 0, void 0, function () {
-            var taxonomy;
-            return __generator(this, function (_a) {
-                taxonomy = this.taxonomyRepository.create(data);
-                return [2 /*return*/, this.taxonomyRepository.save(taxonomy)];
-            });
-        });
-    };
-    TaxonomyService.prototype.update = function (id, data) {
+    ResearchInstitutionService.prototype.update = function (id, data) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.taxonomyRepository.update(id, data)];
+                    case 0: return [4 /*yield*/, this.researchInstitutionRepository.update(id, data)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, this.taxonomyRepository.findOneBy({ id: id })];
+                        return [2 /*return*/, this.researchInstitutionRepository.findOneBy({ id: id })];
                 }
             });
         });
     };
-    TaxonomyService.prototype.delete = function (id) {
+    ResearchInstitutionService.prototype.delete = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.taxonomyRepository.delete(id)];
+                return [2 /*return*/, this.researchInstitutionRepository.delete(id)];
             });
         });
     };
-    return TaxonomyService;
+    return ResearchInstitutionService;
 }());
-exports.TaxonomyService = TaxonomyService;
+exports.ResearchInstitutionService = ResearchInstitutionService;

@@ -1,12 +1,14 @@
 import { Router } from 'express';
-import { getTaxonomies, getTaxonomyById, createTaxonomy, updateTaxonomy, deleteTaxonomy } from '../controllers/TaxonomyController';
+import { TaxonomyController } from '../controllers/TaxonomyController';
 
 const router = Router();
+const Taxonomy = new TaxonomyController();
 
-router.get('/', getTaxonomies);
-router.get('/:id', getTaxonomyById);
-router.post('/', createTaxonomy);
-router.put('/:id', updateTaxonomy);
-router.delete('/:id', deleteTaxonomy);
+router.get('/', (req, res) => Taxonomy.getAll(req, res));
+router.get('/:id', (req, res) => Taxonomy.getById(req, res));
+router.post('/', (req, res) => Taxonomy.create(req, res));
+router.put('/:id', (req, res) => Taxonomy.update(req, res));
+router.delete('/:id', (req, res) => Taxonomy.delete(req, res));
 
 export default router;
+

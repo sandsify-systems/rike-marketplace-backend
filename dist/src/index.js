@@ -12,6 +12,9 @@ var userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 var customerRoutes_1 = __importDefault(require("./routes/customerRoutes"));
 var orderRoutes_1 = __importDefault(require("./routes/orderRoutes"));
 var transactionRoutes_1 = __importDefault(require("./routes/transactionRoutes"));
+var ResearchInstitutionRoutes_1 = __importDefault(require("./routes/ResearchInstitutionRoutes"));
+var EquipmentRoutes_1 = __importDefault(require("./routes/EquipmentRoutes"));
+var TaxonomyRoutes_1 = __importDefault(require("./routes/TaxonomyRoutes"));
 var swagger_1 = require("../swagger");
 var swagger_ui_express_1 = __importDefault(require("swagger-ui-express")); // Import swaggerUI
 data_source_1.AppDataSource.initialize()
@@ -32,6 +35,9 @@ data_source_1.AppDataSource.initialize()
     app.use('/customers', customerRoutes_1.default);
     app.use('/orders', orderRoutes_1.default);
     app.use('/transactions', transactionRoutes_1.default);
+    app.use('/research-institutions', ResearchInstitutionRoutes_1.default);
+    app.use('/equipment', EquipmentRoutes_1.default);
+    app.use('/taxonomy', TaxonomyRoutes_1.default);
     // Serve Swagger UI
     app.use('/api-docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_1.swaggerSpec));
     app.listen(port, function () {

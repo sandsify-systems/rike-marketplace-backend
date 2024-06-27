@@ -36,62 +36,55 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaxonomyService = void 0;
+exports.UserService = void 0;
 var data_source_1 = require("../data-source");
-var Taxonomy_1 = require("../entity/Taxonomy");
-var TaxonomyService = /** @class */ (function () {
-    function TaxonomyService() {
-        this.taxonomyRepository = data_source_1.AppDataSource.getRepository(Taxonomy_1.Taxonomy);
+var User_1 = require("../entity/User");
+var UserService = /** @class */ (function () {
+    function UserService() {
+        this.userRepository = data_source_1.AppDataSource.getRepository(User_1.User);
     }
-    TaxonomyService.prototype.getAll = function () {
+    UserService.prototype.getAll = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.taxonomyRepository.find()];
+                return [2 /*return*/, this.userRepository.find()];
             });
         });
     };
-    TaxonomyService.prototype.getById = function (id) {
+    UserService.prototype.getById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.taxonomyRepository.findOneBy({ id: id })];
+                return [2 /*return*/, this.userRepository.findOneBy({ id: id })];
             });
         });
     };
-    TaxonomyService.prototype.getByEquipmentId = function (equipmentId) {
+    UserService.prototype.create = function (userData) {
         return __awaiter(this, void 0, void 0, function () {
+            var user;
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.taxonomyRepository.find({ where: { equipment: { id: equipmentId } } })];
+                user = this.userRepository.create(userData);
+                return [2 /*return*/, this.userRepository.save(user)];
             });
         });
     };
-    TaxonomyService.prototype.create = function (data) {
-        return __awaiter(this, void 0, void 0, function () {
-            var taxonomy;
-            return __generator(this, function (_a) {
-                taxonomy = this.taxonomyRepository.create(data);
-                return [2 /*return*/, this.taxonomyRepository.save(taxonomy)];
-            });
-        });
-    };
-    TaxonomyService.prototype.update = function (id, data) {
+    UserService.prototype.update = function (id, userData) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.taxonomyRepository.update(id, data)];
+                    case 0: return [4 /*yield*/, this.userRepository.update(id, userData)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, this.taxonomyRepository.findOneBy({ id: id })];
+                        return [2 /*return*/, this.userRepository.findOneBy({ id: id })];
                 }
             });
         });
     };
-    TaxonomyService.prototype.delete = function (id) {
+    UserService.prototype.delete = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.taxonomyRepository.delete(id)];
+                return [2 /*return*/, this.userRepository.delete(id)];
             });
         });
     };
-    return TaxonomyService;
+    return UserService;
 }());
-exports.TaxonomyService = TaxonomyService;
+exports.UserService = UserService;

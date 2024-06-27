@@ -8,7 +8,7 @@ const swaggerDefinition = {
   info: {
     title: 'Welcome to Rike-MarketPlace Node TypeScript API with TypeORM and Express',
     version: '1.0.0',
-    description: 'API documentation for managing products, categories, users, customers, orders, and transactions.',
+    description: 'API documentation for managing R.I.K.E Market Place.',
   },
   servers: [
     {

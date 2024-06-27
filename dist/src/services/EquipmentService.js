@@ -36,62 +36,55 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaxonomyService = void 0;
+exports.EquipmentService = void 0;
 var data_source_1 = require("../data-source");
-var Taxonomy_1 = require("../entity/Taxonomy");
-var TaxonomyService = /** @class */ (function () {
-    function TaxonomyService() {
-        this.taxonomyRepository = data_source_1.AppDataSource.getRepository(Taxonomy_1.Taxonomy);
+var Equipment_1 = require("../entity/Equipment");
+var EquipmentService = /** @class */ (function () {
+    function EquipmentService() {
+        this.equipmentRepository = data_source_1.AppDataSource.getRepository(Equipment_1.Equipment);
     }
-    TaxonomyService.prototype.getAll = function () {
+    EquipmentService.prototype.getAll = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.taxonomyRepository.find()];
+                return [2 /*return*/, this.equipmentRepository.find()];
             });
         });
     };
-    TaxonomyService.prototype.getById = function (id) {
+    EquipmentService.prototype.getById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.taxonomyRepository.findOneBy({ id: id })];
+                return [2 /*return*/, this.equipmentRepository.findOneBy({ id: id })];
             });
         });
     };
-    TaxonomyService.prototype.getByEquipmentId = function (equipmentId) {
+    EquipmentService.prototype.create = function (data) {
         return __awaiter(this, void 0, void 0, function () {
+            var equipment;
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.taxonomyRepository.find({ where: { equipment: { id: equipmentId } } })];
+                equipment = this.equipmentRepository.create(data);
+                return [2 /*return*/, this.equipmentRepository.save(equipment)];
             });
         });
     };
-    TaxonomyService.prototype.create = function (data) {
-        return __awaiter(this, void 0, void 0, function () {
-            var taxonomy;
-            return __generator(this, function (_a) {
-                taxonomy = this.taxonomyRepository.create(data);
-                return [2 /*return*/, this.taxonomyRepository.save(taxonomy)];
-            });
-        });
-    };
-    TaxonomyService.prototype.update = function (id, data) {
+    EquipmentService.prototype.update = function (id, data) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.taxonomyRepository.update(id, data)];
+                    case 0: return [4 /*yield*/, this.equipmentRepository.update(id, data)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, this.taxonomyRepository.findOneBy({ id: id })];
+                        return [2 /*return*/, this.equipmentRepository.findOneBy({ id: id })];
                 }
             });
         });
     };
-    TaxonomyService.prototype.delete = function (id) {
+    EquipmentService.prototype.delete = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.taxonomyRepository.delete(id)];
+                return [2 /*return*/, this.equipmentRepository.delete(id)];
             });
         });
     };
-    return TaxonomyService;
+    return EquipmentService;
 }());
-exports.TaxonomyService = TaxonomyService;
+exports.EquipmentService = EquipmentService;

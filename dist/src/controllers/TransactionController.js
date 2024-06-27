@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TransactionController = void 0;
-var TransactionService_1 = require("../service/TransactionService");
+var TransactionService_1 = require("../services/TransactionService");
 var transactionService = new TransactionService_1.TransactionService();
 var TransactionController = /** @class */ (function () {
     function TransactionController() {
