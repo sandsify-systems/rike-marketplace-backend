@@ -8,8 +8,13 @@ export class TransactionService {
     return this.transactionRepository.find({ relations: ['order'] });
   }
 
+
+
   async getById(id: number) {
-    return this.transactionRepository.findOneBy({ id }, { relations: ['order'] });
+    return this.transactionRepository.findOne({
+      where: { id },
+      relations: ['order']
+    });
   }
 
   async create(transactionData: Partial<Transaction>) {
@@ -19,7 +24,10 @@ export class TransactionService {
 
   async update(id: number, transactionData: Partial<Transaction>) {
     await this.transactionRepository.update(id, transactionData);
-    return this.transactionRepository.findOneBy({ id }, { relations: ['order'] });
+    return this.transactionRepository.findOne({
+      where: { id },
+      relations: ['order']
+    });
   }
 
   async delete(id: number) {

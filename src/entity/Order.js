@@ -13,6 +13,7 @@ exports.Order = void 0;
 var typeorm_1 = require("typeorm");
 var Customer_1 = require("./Customer");
 var OrderItem_1 = require("./OrderItem");
+var Transaction_1 = require("./Transaction");
 var Order = /** @class */ (function () {
     function Order() {
     }
@@ -36,6 +37,10 @@ var Order = /** @class */ (function () {
         (0, typeorm_1.OneToMany)(function () { return OrderItem_1.OrderItem; }, function (orderItem) { return orderItem.order; }),
         __metadata("design:type", Array)
     ], Order.prototype, "items", void 0);
+    __decorate([
+        (0, typeorm_1.OneToMany)(function () { return Transaction_1.Transaction; }, function (transaction) { return transaction.order; }),
+        __metadata("design:type", Array)
+    ], Order.prototype, "transactions", void 0);
     Order = __decorate([
         (0, typeorm_1.Entity)()
     ], Order);

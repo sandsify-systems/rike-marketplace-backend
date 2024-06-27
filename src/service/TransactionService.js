@@ -53,7 +53,10 @@ var TransactionService = /** @class */ (function () {
     TransactionService.prototype.getById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.transactionRepository.findOneBy({ id: id }, { relations: ['order'] })];
+                return [2 /*return*/, this.transactionRepository.findOne({
+                        where: { id: id },
+                        relations: ['order']
+                    })];
             });
         });
     };
@@ -73,7 +76,10 @@ var TransactionService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.transactionRepository.update(id, transactionData)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, this.transactionRepository.findOneBy({ id: id }, { relations: ['order'] })];
+                        return [2 /*return*/, this.transactionRepository.findOne({
+                                where: { id: id },
+                                relations: ['order']
+                            })];
                 }
             });
         });
