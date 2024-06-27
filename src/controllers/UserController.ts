@@ -7,7 +7,7 @@ export class UserController {
   /**
    * @swagger
    * tags:
-   *   name: Users
+   *   name: Authentication
    *   description: API endpoints for managing users.
    */
 
@@ -16,7 +16,7 @@ export class UserController {
    * /users:
    *   get:
    *     summary: Retrieve all users
-   *     tags: [Users]
+   *     tags: [Authentication]
    *     responses:
    *       '200':
    *         description: A list of users
@@ -31,7 +31,7 @@ export class UserController {
    * /users/{id}:
    *   get:
    *     summary: Retrieve a single user by ID
-   *     tags: [Users]
+   *     tags: [Authentication]
    *     parameters:
    *       - in: path
    *         name: id
@@ -58,7 +58,7 @@ export class UserController {
    * /users:
    *   post:
    *     summary: Create a new user
-   *     tags: [Users]
+   *     tags: [Authentication]
    *     requestBody:
    *       required: true
    *       content:
@@ -101,7 +101,7 @@ export class UserController {
    * /users/{id}:
    *   put:
    *     summary: Update a user by ID
-   *     tags: [Users]
+   *     tags: [Authentication]
    *     parameters:
    *       - in: path
    *         name: id
@@ -151,7 +151,7 @@ export class UserController {
    * /users/{id}:
    *   delete:
    *     summary: Delete a user by ID
-   *     tags: [Users]
+   *     tags: [Authentication]
    *     parameters:
    *       - in: path
    *         name: id

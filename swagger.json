@@ -1534,24 +1534,16 @@
   "components": {},
   "tags": [
     {
-      "name": "Authentication",
-      "description": "API endpoints for managing users."
-    },
-    {
       "name": "Customers",
       "description": "API endpoints for managing customers."
-    },
-    {
-      "name": "Research Institutions",
-      "description": "Operations related to research institutions"
     },
     {
       "name": "Equipment",
       "description": "Operations related to equipment management"
     },
     {
-      "name": "Taxonomy",
-      "description": "Operations related to taxonomy management"
+      "name": "Orders",
+      "description": "API endpoints for managing orders."
     },
     {
       "name": "Product Categories",
@@ -1560,14 +1552,22 @@
     {
       "name": "Products",
       "description": "API endpoints for managing products."
-    }, 
+    },
     {
-      "name": "Orders",
-      "description": "API endpoints for managing orders."
-    },  
+      "name": "Research Institutions",
+      "description": "Operations related to research institutions"
+    },
+    {
+      "name": "Taxonomy",
+      "description": "Operations related to taxonomy management"
+    },
     {
       "name": "Transactions",
       "description": "API endpoints for managing transactions."
+    },
+    {
+      "name": "Authentication",
+      "description": "API endpoints for managing users."
     }
   ]
 }

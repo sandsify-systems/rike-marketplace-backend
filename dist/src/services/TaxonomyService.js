@@ -57,6 +57,13 @@ var TaxonomyService = /** @class */ (function () {
             });
         });
     };
+    TaxonomyService.prototype.getByEquipmentId = function (equipmentId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, this.taxonomyRepository.find({ where: { equipment: { id: equipmentId } } })];
+            });
+        });
+    };
     TaxonomyService.prototype.create = function (data) {
         return __awaiter(this, void 0, void 0, function () {
             var taxonomy;

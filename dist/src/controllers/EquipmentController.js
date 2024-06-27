@@ -36,70 +36,239 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteEquipment = exports.updateEquipment = exports.createEquipment = exports.getEquipmentById = exports.getEquipment = void 0;
+exports.EquipmentController = void 0;
 var EquipmentService_1 = require("../services/EquipmentService");
 var equipmentService = new EquipmentService_1.EquipmentService();
-var getEquipment = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var equipment;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, equipmentService.getAll()];
-            case 1:
-                equipment = _a.sent();
-                res.json(equipment);
-                return [2 /*return*/];
-        }
-    });
-}); };
-exports.getEquipment = getEquipment;
-var getEquipmentById = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var equipment;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, equipmentService.getById(Number(req.params.id))];
-            case 1:
-                equipment = _a.sent();
-                res.json(equipment);
-                return [2 /*return*/];
-        }
-    });
-}); };
-exports.getEquipmentById = getEquipmentById;
-var createEquipment = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var equipment;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, equipmentService.create(req.body)];
-            case 1:
-                equipment = _a.sent();
-                res.json(equipment);
-                return [2 /*return*/];
-        }
-    });
-}); };
-exports.createEquipment = createEquipment;
-var updateEquipment = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var equipment;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, equipmentService.update(Number(req.params.id), req.body)];
-            case 1:
-                equipment = _a.sent();
-                res.json(equipment);
-                return [2 /*return*/];
-        }
-    });
-}); };
-exports.updateEquipment = updateEquipment;
-var deleteEquipment = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, equipmentService.delete(Number(req.params.id))];
-            case 1:
-                _a.sent();
-                res.sendStatus(204);
-                return [2 /*return*/];
-        }
-    });
-}); };
-exports.deleteEquipment = deleteEquipment;
+var EquipmentController = /** @class */ (function () {
+    function EquipmentController() {
+    }
+    /**
+     * @swagger
+     * tags:
+     *   name: Equipment
+     *   description: Operations related to equipment management
+     */
+    /**
+     * @swagger
+     * /api/equipment:
+     *   get:
+     *     summary: Retrieve all equipment entries.
+     *     tags: [Equipment]
+     *     responses:
+     *       200:
+     *         description: A list of equipment entries.
+     */
+    EquipmentController.prototype.getAll = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var equipment;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, equipmentService.getAll()];
+                    case 1:
+                        equipment = _a.sent();
+                        res.json(equipment);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /**
+     * @swagger
+     * /api/equipment/{id}:
+     *   get:
+     *     summary: Retrieve a single equipment entry by ID.
+     *     tags: [Equipment]
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *         required: true
+     *         schema:
+     *           type: integer
+     *         description: ID of the equipment entry to retrieve.
+     *     responses:
+     *       200:
+     *         description: A single equipment entry object.
+     *       404:
+     *         description: Equipment entry not found.
+     */
+    EquipmentController.prototype.getById = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var equipment;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, equipmentService.getById(Number(req.params.id))];
+                    case 1:
+                        equipment = _a.sent();
+                        if (!equipment) {
+                            return [2 /*return*/, res.status(404).json({ message: 'Equipment entry not found' })];
+                        }
+                        res.json(equipment);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /**
+     * @swagger
+     * /api/equipment:
+     *   post:
+     *     summary: Create a new equipment entry.
+     *     tags: [Equipment]
+     *     requestBody:
+     *       required: true
+     *       content:
+     *         application/json:
+     *           schema:
+     *             type: object
+     *             properties:
+     *               name:
+     *                 type: string
+     *               description:
+     *                 type: string
+     *               availability:
+     *                 type: boolean
+     *               verificationStatus:
+     *                 type: boolean
+     *               verifiedBy:
+     *                 type: integer
+     *             required:
+     *               - name
+     *               - description
+     *               - availability
+     *     responses:
+     *       200:
+     *         description: The created equipment entry object.
+     *       400:
+     *         description: Bad request. Missing required fields.
+     */
+    EquipmentController.prototype.create = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var equipment, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, equipmentService.create(req.body)];
+                    case 1:
+                        equipment = _a.sent();
+                        res.json(equipment);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        err_1 = _a.sent();
+                        res.status(400).json({ error: err_1.message });
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /**
+     * @swagger
+     * /api/equipment/{id}:
+     *   put:
+     *     summary: Update an existing equipment entry by ID.
+     *     tags: [Equipment]
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *         required: true
+     *         schema:
+     *           type: integer
+     *         description: ID of the equipment entry to update.
+     *     requestBody:
+     *       required: true
+     *       content:
+     *         application/json:
+     *           schema:
+     *             type: object
+     *             properties:
+     *               name:
+     *                 type: string
+     *               description:
+     *                 type: string
+     *               availability:
+     *                 type: boolean
+     *               verificationStatus:
+     *                 type: boolean
+     *               verifiedBy:
+     *                 type: integer
+     *             required:
+     *               - name
+     *               - description
+     *               - availability
+     *     responses:
+     *       200:
+     *         description: The updated equipment entry object.
+     *       404:
+     *         description: Equipment entry not found.
+     *       400:
+     *         description: Bad request. Missing required fields.
+     */
+    EquipmentController.prototype.update = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var equipment, err_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, equipmentService.update(Number(req.params.id), req.body)];
+                    case 1:
+                        equipment = _a.sent();
+                        if (!equipment) {
+                            res.status(404).json({ message: 'Equipment entry not found' });
+                            return [2 /*return*/];
+                        }
+                        res.json(equipment);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        err_2 = _a.sent();
+                        res.status(400).json({ error: err_2.message });
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /**
+     * @swagger
+     * /api/equipment/{id}:
+     *   delete:
+     *     summary: Delete an equipment entry by ID.
+     *     tags: [Equipment]
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *         required: true
+     *         schema:
+     *           type: integer
+     *         description: ID of the equipment entry to delete.
+     *     responses:
+     *       204:
+     *         description: Equipment entry successfully deleted.
+     *       404:
+     *         description: Equipment entry not found.
+     */
+    EquipmentController.prototype.delete = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var err_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, equipmentService.delete(Number(req.params.id))];
+                    case 1:
+                        _a.sent();
+                        res.sendStatus(204);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        err_3 = _a.sent();
+                        res.status(404).json({ error: 'Equipment entry not found' });
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    return EquipmentController;
+}());
+exports.EquipmentController = EquipmentController;

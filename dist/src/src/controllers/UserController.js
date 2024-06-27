@@ -36,37 +36,37 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProductCategoryController = void 0;
-var ProductCategoryService_1 = require("../service/ProductCategoryService");
-var productCategoryService = new ProductCategoryService_1.ProductCategoryService();
-var ProductCategoryController = /** @class */ (function () {
-    function ProductCategoryController() {
+exports.UserController = void 0;
+var UserService_1 = require("../services/UserService");
+var userService = new UserService_1.UserService();
+var UserController = /** @class */ (function () {
+    function UserController() {
     }
     /**
      * @swagger
      * tags:
-     *   name: Product Categories
-     *   description: API endpoints for managing product categories.
+     *   name: Authentication
+     *   description: API endpoints for managing users.
      */
     /**
      * @swagger
-     * /product-categories:
+     * /users:
      *   get:
-     *     summary: Retrieve all product categories
-     *     tags: [Product Categories]
+     *     summary: Retrieve all users
+     *     tags: [Authentication]
      *     responses:
      *       '200':
-     *         description: A list of product categories
+     *         description: A list of users
      */
-    ProductCategoryController.prototype.getAll = function (req, res) {
+    UserController.prototype.getAll = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var categories;
+            var users;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, productCategoryService.getAll()];
+                    case 0: return [4 /*yield*/, userService.getAll()];
                     case 1:
-                        categories = _a.sent();
-                        res.json(categories);
+                        users = _a.sent();
+                        res.json(users);
                         return [2 /*return*/];
                 }
             });
@@ -74,35 +74,35 @@ var ProductCategoryController = /** @class */ (function () {
     };
     /**
      * @swagger
-     * /product-categories/{id}:
+     * /users/{id}:
      *   get:
-     *     summary: Retrieve a single product category by ID
-     *     tags: [Product Categories]
+     *     summary: Retrieve a single user by ID
+     *     tags: [Authentication]
      *     parameters:
      *       - in: path
      *         name: id
      *         required: true
      *         schema:
      *           type: integer
-     *         description: ID of the product category to retrieve
+     *         description: ID of the user to retrieve
      *     responses:
      *       '200':
-     *         description: A product category object
+     *         description: A user object
      *       '404':
-     *         description: Product category not found
+     *         description: User not found
      */
-    ProductCategoryController.prototype.getById = function (req, res) {
+    UserController.prototype.getById = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var category;
+            var user;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, productCategoryService.getById(Number(req.params.id))];
+                    case 0: return [4 /*yield*/, userService.getById(Number(req.params.id))];
                     case 1:
-                        category = _a.sent();
-                        if (!category) {
-                            return [2 /*return*/, res.status(404).json({ message: 'Product category not found' })];
+                        user = _a.sent();
+                        if (!user) {
+                            return [2 /*return*/, res.status(404).json({ message: 'User not found' })];
                         }
-                        res.json(category);
+                        res.json(user);
                         return [2 /*return*/];
                 }
             });
@@ -110,10 +110,10 @@ var ProductCategoryController = /** @class */ (function () {
     };
     /**
      * @swagger
-     * /product-categories:
+     * /users:
      *   post:
-     *     summary: Create a new product category
-     *     tags: [Product Categories]
+     *     summary: Create a new user
+     *     tags: [Authentication]
      *     requestBody:
      *       required: true
      *       content:
@@ -121,24 +121,40 @@ var ProductCategoryController = /** @class */ (function () {
      *           schema:
      *             type: object
      *             properties:
-     *               name:
+     *               email:
      *                 type: string
-     *                 description: Name of the product category
+     *                 description: Email address of the user
+     *               password:
+     *                 type: string
+     *                 description: Password of the user
+     *               accountStatus:
+     *                 type: boolean
+     *                 description: Status of the user's account
+     *                 default: true
+     *               role:
+     *                 type: string
+     *                 enum: [admin, institution, researcher, agent, explorer]
+     *                 description: Role of the user
+     *                 default: explorer
      *             example:
-     *               name: Electronics
+     *               name: john doe
+     *               email: john.doe@example.com
+     *               password: mypassword
+     *               accountStatus: true
+     *               role: explorer
      *     responses:
      *       '200':
-     *         description: Created product category object
+     *         description: Created user object
      */
-    ProductCategoryController.prototype.create = function (req, res) {
+    UserController.prototype.create = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var category;
+            var user;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, productCategoryService.create(req.body)];
+                    case 0: return [4 /*yield*/, userService.create(req.body)];
                     case 1:
-                        category = _a.sent();
-                        res.json(category);
+                        user = _a.sent();
+                        res.json(user);
                         return [2 /*return*/];
                 }
             });
@@ -146,17 +162,17 @@ var ProductCategoryController = /** @class */ (function () {
     };
     /**
      * @swagger
-     * /product-categories/{id}:
+     * /users/{id}:
      *   put:
-     *     summary: Update a product category by ID
-     *     tags: [Product Categories]
+     *     summary: Update a user by ID
+     *     tags: [Authentication]
      *     parameters:
      *       - in: path
      *         name: id
      *         required: true
      *         schema:
      *           type: integer
-     *         description: ID of the product category to update
+     *         description: ID of the user to update
      *     requestBody:
      *       required: true
      *       content:
@@ -166,27 +182,38 @@ var ProductCategoryController = /** @class */ (function () {
      *             properties:
      *               name:
      *                 type: string
-     *                 description: Updated name of the product category
-     *             example:
-     *               name: Electronics (Updated)
+     *                 description: Updated name of the user
+     *               email:
+     *                 type: string
+     *                 description: Updated email address of the user
+     *               password:
+     *                 type: string
+     *                 description: Updated password of the user
+     *               accountStatus:
+     *                 type: boolean
+     *                 description: Updated status of the user's account
+     *               role:
+     *                 type: string
+     *                 enum: [admin, institution, researcher, explorer]
+     *                 description: Updated role of the user
      *     responses:
      *       '200':
-     *         description: Updated product category object
+     *         description: Updated user object
      *       '404':
-     *         description: Product category not found
+     *         description: User not found
      */
-    ProductCategoryController.prototype.update = function (req, res) {
+    UserController.prototype.update = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var category;
+            var user;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, productCategoryService.update(Number(req.params.id), req.body)];
+                    case 0: return [4 /*yield*/, userService.update(Number(req.params.id), req.body)];
                     case 1:
-                        category = _a.sent();
-                        if (!category) {
-                            return [2 /*return*/, res.status(404).json({ message: 'Product category not found' })];
+                        user = _a.sent();
+                        if (!user) {
+                            return [2 /*return*/, res.status(404).json({ message: 'User not found' })];
                         }
-                        res.json(category);
+                        res.json(user);
                         return [2 /*return*/];
                 }
             });
@@ -194,28 +221,28 @@ var ProductCategoryController = /** @class */ (function () {
     };
     /**
      * @swagger
-     * /product-categories/{id}:
+     * /users/{id}:
      *   delete:
-     *     summary: Delete a product category by ID
-     *     tags: [Product Categories]
+     *     summary: Delete a user by ID
+     *     tags: [Authentication]
      *     parameters:
      *       - in: path
      *         name: id
      *         required: true
      *         schema:
      *           type: integer
-     *         description: ID of the product category to delete
+     *         description: ID of the user to delete
      *     responses:
      *       '204':
-     *         description: Product category deleted successfully
+     *         description: User deleted successfully
      *       '404':
-     *         description: Product category not found
+     *         description: User not found
      */
-    ProductCategoryController.prototype.delete = function (req, res) {
+    UserController.prototype.delete = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, productCategoryService.delete(Number(req.params.id))];
+                    case 0: return [4 /*yield*/, userService.delete(Number(req.params.id))];
                     case 1:
                         _a.sent();
                         res.sendStatus(204);
@@ -224,6 +251,6 @@ var ProductCategoryController = /** @class */ (function () {
             });
         });
     };
-    return ProductCategoryController;
+    return UserController;
 }());
-exports.ProductCategoryController = ProductCategoryController;
+exports.UserController = UserController;

@@ -36,70 +36,276 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteTaxonomy = exports.updateTaxonomy = exports.createTaxonomy = exports.getTaxonomyById = exports.getTaxonomies = void 0;
+exports.TaxonomyController = void 0;
 var TaxonomyService_1 = require("../services/TaxonomyService");
 var taxonomyService = new TaxonomyService_1.TaxonomyService();
-var getTaxonomies = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var taxonomies;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, taxonomyService.getAll()];
-            case 1:
-                taxonomies = _a.sent();
-                res.json(taxonomies);
-                return [2 /*return*/];
-        }
-    });
-}); };
-exports.getTaxonomies = getTaxonomies;
-var getTaxonomyById = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var taxonomy;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, taxonomyService.getById(Number(req.params.id))];
-            case 1:
-                taxonomy = _a.sent();
-                res.json(taxonomy);
-                return [2 /*return*/];
-        }
-    });
-}); };
-exports.getTaxonomyById = getTaxonomyById;
-var createTaxonomy = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var taxonomy;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, taxonomyService.create(req.body)];
-            case 1:
-                taxonomy = _a.sent();
-                res.json(taxonomy);
-                return [2 /*return*/];
-        }
-    });
-}); };
-exports.createTaxonomy = createTaxonomy;
-var updateTaxonomy = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var taxonomy;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, taxonomyService.update(Number(req.params.id), req.body)];
-            case 1:
-                taxonomy = _a.sent();
-                res.json(taxonomy);
-                return [2 /*return*/];
-        }
-    });
-}); };
-exports.updateTaxonomy = updateTaxonomy;
-var deleteTaxonomy = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, taxonomyService.delete(Number(req.params.id))];
-            case 1:
-                _a.sent();
-                res.sendStatus(204);
-                return [2 /*return*/];
-        }
-    });
-}); };
-exports.deleteTaxonomy = deleteTaxonomy;
+var TaxonomyController = /** @class */ (function () {
+    function TaxonomyController() {
+    }
+    /**
+     * @swagger
+     * tags:
+     *   name: Taxonomy
+     *   description: Operations related to taxonomy management
+     */
+    /**
+     * @swagger
+     * /api/taxonomy:
+     *   get:
+     *     summary: Retrieve all taxonomy entries.
+     *     tags: [Taxonomy]
+     *     responses:
+     *       200:
+     *         description: A list of taxonomy entries.
+     */
+    TaxonomyController.prototype.getAll = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var taxonomy;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, taxonomyService.getAll()];
+                    case 1:
+                        taxonomy = _a.sent();
+                        res.json(taxonomy);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /**
+     * @swagger
+     * /api/taxonomy/{id}:
+     *   get:
+     *     summary: Retrieve a single taxonomy entry by ID.
+     *     tags: [Taxonomy]
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *         required: true
+     *         schema:
+     *           type: integer
+     *         description: ID of the taxonomy entry to retrieve.
+     *     responses:
+     *       200:
+     *         description: A single taxonomy entry object.
+     *       404:
+     *         description: Taxonomy entry not found.
+     */
+    TaxonomyController.prototype.getById = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var taxonomy;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, taxonomyService.getById(Number(req.params.id))];
+                    case 1:
+                        taxonomy = _a.sent();
+                        if (!taxonomy) {
+                            return [2 /*return*/, res.status(404).json({ message: 'Taxonomy entry not found' })];
+                        }
+                        res.json(taxonomy);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /**
+     * @swagger
+     * /api/taxonomy:
+     *   post:
+     *     summary: Create a new taxonomy entry.
+     *     tags: [Taxonomy]
+     *     requestBody:
+     *       required: true
+     *       content:
+     *         application/json:
+     *           schema:
+     *             type: object
+     *             properties:
+     *               equipmentID:
+     *                 type: integer
+     *               parameter:
+     *                 type: string
+     *               value:
+     *                 type: string
+     *             required:
+     *               - equipmentID
+     *               - parameter
+     *               - value
+     *     responses:
+     *       200:
+     *         description: The created taxonomy entry object.
+     *       400:
+     *         description: Bad request. Missing required fields.
+     */
+    TaxonomyController.prototype.create = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var taxonomy, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, taxonomyService.create(req.body)];
+                    case 1:
+                        taxonomy = _a.sent();
+                        res.json(taxonomy);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        err_1 = _a.sent();
+                        res.status(400).json({ error: err_1.message });
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /**
+     * @swagger
+     * /api/taxonomy/{id}:
+     *   put:
+     *     summary: Update an existing taxonomy entry by ID.
+     *     tags: [Taxonomy]
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *         required: true
+     *         schema:
+     *           type: integer
+     *         description: ID of the taxonomy entry to update.
+     *     requestBody:
+     *       required: true
+     *       content:
+     *         application/json:
+     *           schema:
+     *             type: object
+     *             properties:
+     *               equipmentID:
+     *                 type: integer
+     *               parameter:
+     *                 type: string
+     *               value:
+     *                 type: string
+     *             required:
+     *               - equipmentID
+     *               - parameter
+     *               - value
+     *     responses:
+     *       200:
+     *         description: The updated taxonomy entry object.
+     *       404:
+     *         description: Taxonomy entry not found.
+     *       400:
+     *         description: Bad request. Missing required fields.
+     */
+    TaxonomyController.prototype.update = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var taxonomy, err_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, taxonomyService.update(Number(req.params.id), req.body)];
+                    case 1:
+                        taxonomy = _a.sent();
+                        if (!taxonomy) {
+                            res.status(404).json({ error: 'Taxonomy entry not found' });
+                            return [2 /*return*/];
+                        }
+                        res.json(taxonomy);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        err_2 = _a.sent();
+                        res.status(400).json({ error: err_2.message });
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /**
+     * @swagger
+     * /api/taxonomy/{id}:
+     *   delete:
+     *     summary: Delete a taxonomy entry by ID.
+     *     tags: [Taxonomy]
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *         required: true
+     *         schema:
+     *           type: integer
+     *         description: ID of the taxonomy entry to delete.
+     *     responses:
+     *       204:
+     *         description: Taxonomy entry successfully deleted.
+     *       404:
+     *         description: Taxonomy entry not found.
+     */
+    TaxonomyController.prototype.delete = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var err_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, taxonomyService.delete(Number(req.params.id))];
+                    case 1:
+                        _a.sent();
+                        res.sendStatus(204);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        err_3 = _a.sent();
+                        res.status(404).json({ error: 'Taxonomy entry not found' });
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    /**
+     * @swagger
+     * /api/taxonomy/by-equipment/{equipmentId}:
+     *   get:
+     *     summary: Retrieve taxonomy entries by equipment ID.
+     *     tags: [Taxonomy]
+     *     parameters:
+     *       - in: path
+     *         name: equipmentId
+     *         required: true
+     *         schema:
+     *           type: integer
+     *         description: ID of the equipment to retrieve taxonomy entries for.
+     *     responses:
+     *       200:
+     *         description: A list of taxonomy entries associated with the equipment.
+     *       404:
+     *         description: No taxonomy entries found for the specified equipment ID.
+     */
+    TaxonomyController.prototype.getByEquipment = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var equipmentId, taxonomy, err_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        equipmentId = req.params.equipmentId;
+                        return [4 /*yield*/, taxonomyService.getByEquipmentId(Number(equipmentId))];
+                    case 1:
+                        taxonomy = _a.sent();
+                        if (!taxonomy) {
+                            res.status(404).json({ error: 'No taxonomy entries found for the specified equipment ID' });
+                            return [2 /*return*/];
+                        }
+                        res.json(taxonomy);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        err_4 = _a.sent();
+                        res.status(500).json({ error: err_4.message });
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    return TaxonomyController;
+}());
+exports.TaxonomyController = TaxonomyController;
